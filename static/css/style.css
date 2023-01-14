@@ -1,0 +1,71 @@
+/* --------------------------------------------------Navbar */
+
+.navbar {
+    background-color: #FEFBE9;
+    padding-left: 1em;
+    padding-right: 1em;
+    --bs-navbar-nav-link-padding-x: 1rem;
+}
+
+.navbar-brand {
+    font-family: 'Berkshire Swash', cursive;
+    font-weight: 900;
+    color: #f0a04b;
+    font-size: 3rem;
+}
+
+.nav-link {
+    color: #183a1d;
+}
+
+.navbar-nav {
+    --bs-nav-link-hover-color: #f0a04b;
+}
+
+.dropdown-menu {
+    background-color: #FEFBE9;
+    --bs-dropdown-font-size: 1.25rem;
+    --bs-dropdown-color: #183a1d;
+    --bs-dropdown-link-hover-bg: #FEFBE9;
+    --bs-dropdown-link-hover-color: #f0a04b;
+    --bs-dropdown-link-active-color: #FBF8F1;
+    --bs-dropdown-link-active-bg: #FEFCF3;
+    border: none;
+    margin-right: 0.125em;
+}
+
+.dropdown-item {
+    color: #183a1d;
+}
+
+
+/* --------------------------------------------------Body */
+
+body {
+    background-color: #FEFBE9;
+}
+
+
+/* --------------------------------------------------Footer */
+
+footer {
+    color: #183a1d;
+    background-color: #e1eedd;
+    padding-bottom: 0.125em;
+    text-align: center;
+}
+
+/* social icons */
+.social {
+    margin: 20px 10px;
+    color: #183a1d;
+    font-size: 1.5rem;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+}
+
+.social:hover {
+    color: #f0a04b;
+    /* background-color: #183a1d; */
+}
+
