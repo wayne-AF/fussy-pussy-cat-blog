@@ -4,6 +4,10 @@ hr {
     color: #183a1d;
 }
 
+.text-underline-hover:hover {
+    text-decoration: underline;
+}
+
 /* --------------------------------------------------Navbar */
 
 .navbar {
@@ -77,6 +81,23 @@ body {
     color: #FEFBE9;
     margin: 0.5em; 
     text-transform: uppercase;
+}
+
+/* .paw-btn, .fa-comments {
+    font-size: 1.5rem;
+} */
+
+.paw-btn {
+    border: none;
+    background: transparent;
+}
+
+.liked-paw {
+    color: #f0a04b;
+}
+
+.unliked-paw {
+    color: #FEFBE9;
 }
 
 
@@ -178,12 +199,6 @@ footer {
 .link:active {
     color: #445261;
     text-decoration: underline;
-}
-
-.btn-like {
-    color: #E84610;
-    border: none;
-    background: transparent;
 }
 
 .btn-like:hover,
