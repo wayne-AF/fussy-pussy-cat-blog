@@ -32,7 +32,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a href="{% url 'index' %}" class="nav-link text-underline-hover">
+                        <a href="{% url 'home' %}" class="nav-link text-underline-hover">
                             Home
                         </a>
                     </li>
@@ -42,7 +42,7 @@
                             {{ user.username }}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a href="{% url 'profile' %}" class="dropdown-item text-underline-hover">
+                            <a href="{% url 'user_profile' %}" class="dropdown-item text-underline-hover">
                                 Profile
                             </a>
                             <a href="{%  url 'account_logout' %}" class="dropdown-item text-underline-hover">
