@@ -48,7 +48,7 @@ class Comment(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    profile_pic = models.ImageField(default='default.jpg', upload_to='profile_images')
+    profile_pic = models.ImageField(default='default.png', upload_to='profile_images')
     fave_cat = models.CharField(max_length=80)
     likes = models.CharField(max_length=150)
     dislikes = models.CharField(max_length=150)
