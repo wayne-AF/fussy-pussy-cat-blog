@@ -1,7 +1,8 @@
 from django.shortcuts import render, get_object_or_404, reverse
 from django.views import generic, View
 from django.http import HttpResponseRedirect
-from .models import Post
+from django.contrib.auth.decorators import login_required
+from .models import Post, Profile
 from .forms import CommentForm
 
 
@@ -75,3 +76,8 @@ class PostLike(View):
         else:
             post.likes.add(request.user)
         return HttpResponseRedirect(reverse('post_detail', args=[slug]))
+
+
+@login_required
+def profile(request):
+    return render(request, 'profile.html')

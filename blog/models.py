@@ -44,3 +44,15 @@ class Comment(models.Model):
 
     def __str__(self):
         return f'Comment {self.body} by {self.name}'
+
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    profile_pic = models.ImageField(default='default.jpg', upload_to='profile_images')
+    fave_cat = models.CharField(max_length=80)
+    likes = models.CharField(max_length=150)
+    dislikes = models.CharField(max_length=150)
+    bio = models.TextField()
+
+    def __str__(self):
+        return self.user.username

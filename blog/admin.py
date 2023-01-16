@@ -1,6 +1,9 @@
 from django.contrib import admin
-from .models import Post, Comment
+from .models import Post, Comment, Profile
 from django_summernote.admin import SummernoteModelAdmin
+
+
+admin.site.register(Profile)
 
 
 # this decorator tells where in admin we want to use summernote
