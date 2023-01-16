@@ -20,11 +20,11 @@ class UpdateUserForm(forms.ModelForm):
 
 class UpdateProfileForm(forms.ModelForm):
     profile_pic = forms.ImageField(widget=forms.FileInput(attrs={'class': 'form-control-file'}))
-    fave_cat = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+    cat_idol = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
     likes = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
     dislikes = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
     bio = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 5}))
 
     class Meta:
         model = Profile
-        fields = ['profile_pic', 'fave_cat', 'likes', 'dislikes', 'bio']
+        fields = ['profile_pic', 'cat_idol', 'likes', 'dislikes', 'bio']

@@ -5,7 +5,53 @@
 {% block content %}
 
     <div class="row my-3 p-3">
-        <h3>{{user.username}}'s profile page</h3>
+        <h3>{{user.username}}'s profile</h3>
+        <img src="{{ user.profile.profile_pic.url }}" alt="">
     </div>
+    {% if user_form.errors %}
+        <div class="alert alert-danger alert-dismissible" role="alert">
+            <div id="form-errors">
+                {% for key, value in user_forms.errors.items %}
+                <strong>{{ value }}</strong>
+                {% endfor %}    
+            </div>
+            <button type="button" data-dismiss="alert" aria-label="close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {% endif %}
+    <div class="form-content">
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-row">
+                <div class="col-md-5">
+                    <div class="form-group">
+                        <p>Username:</p>
+                        {{ user_form.username }}
+                        <p>Email:</p>
+                        {{ user_form.email }}
+                    </div>
+                    <div class="form-group">
+                        <p>Change avatar:</p>
+                        {{ profile_form.profile_pic }}
+                    </div>
+                    <div>
+                        <p>Likes:</p>
+                        {{ profile_form.likes }}
+                        <p>Dislikes:</p>
+                        {{ profile_form.dislikes }}
+                        <p>Idol:</p>
+                        {{ profile_form.cat_idol}}
+                    </div>
+                    <div>
+                        <p>Bio:</p>
+                        {{ profile_form.bio }}
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn-submit">Save changes</button>
+            <button type="reset" class="btn-reset">Reset</button>
+        </form>
+    </div>    
 
 {% endblock content %}
