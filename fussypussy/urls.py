@@ -17,12 +17,14 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from blog.views import profile
+from blog.views import profile, contact, AddPostView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('summernote/', include('django_summernote.urls')),
-    path('', include('blog.urls'), name='blog_urls'),
     path('accounts/', include('allauth.urls')),
-    path('profile', profile, name='user_profile')
+    path('profile/', profile, name='user_profile'),
+    path('contact/', contact, name='contact'),
+    path('add_post/', AddPostView.as_view(), name='add_post'),
+    path('', include('blog.urls'), name='blog_urls'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

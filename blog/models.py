@@ -1,6 +1,12 @@
 from django.db import models
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
+from django.dispatch import receiver
+from django.db.models.signals import post_save
+from django.urls import reverse
 
 # a tuple for status, 0 or 1 to indicate whether post is draft or published
 STATUS = ((0, 'Draft'), (1, 'Published'))
@@ -29,6 +35,12 @@ class Post(models.Model):
     def number_of_likes(self):
         return self.likes.count()
 
+    # def get_absolute_url(self):
+        # messages.success('Thanks for submitting a post! It will be approved and published shortly')
+        # return redirect(to='home')
+        # return reverse('post_detail', args=(str(self.id)))
+        # return f'Thanks for submitting a post {self.author}! It will be approved and published shortly!'
+
 
 class Comment(models.Model):
     # one-to-many r'ship because one post can have many comments
@@ -56,3 +68,15 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.user.username
+
+
+@receiver(post_save, sender=User)
+def create_or_update_profile(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)
+    instance.profile.save()
+
+
+@receiver(post_save, sender=User)
+def save_profile(sender, instance, **kwargs):
+    instance.profile.save()

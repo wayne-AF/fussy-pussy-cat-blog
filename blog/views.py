@@ -1,9 +1,13 @@
 from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.views import generic, View
+from django.core.mail import send_mail
+from django.views.generic import CreateView
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
 from .models import Post, Profile
-from .forms import CommentForm
+from .forms import CommentForm, UpdateUserForm, UpdateProfileForm
 
 
 class PostList(generic.ListView):
@@ -78,7 +82,7 @@ class PostLike(View):
         return HttpResponseRedirect(reverse('post_detail', args=[slug]))
 
 
-@login_required
+# @login_required
 def profile(request):
     if request.method == 'POST':
         user_form = UpdateUserForm(request.POST, instance=request.user)
@@ -86,11 +90,36 @@ def profile(request):
 
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
-            profile_form()
+            profile_form.save()
             messages.success(request, 'Your profile has been updated successfully!')
-            return redirect(to='users-profile')
+            return redirect(to='profile.html')
     else:
         user_form = UpdateUserForm(instance=request.user)
         profile_form = UpdateProfileForm(instance=request.user.profile)
 
     return render(request, 'profile.html', {'user_form': user_form, 'profile_form': profile_form})
+
+
+def contact(request):
+    # if request.method == "POST":
+    #     message_name = request.POST['message-name']
+    #     message_email = request.POST['message-email']
+    #     message = request.POST['message']
+        
+    #     send_mail(
+    #         'message from: ' + message_name,
+    #         message,
+    #         'contact email: ' + message_email,
+    #         ['fussycatblog@gmail.com'],
+    #     )
+
+    #     return render(request, 'contact.html', {'message_name': message_name})
+    # else:
+    return render(request, 'contact.html', {})
+
+
+class AddPostView(CreateView):
+    model = Post
+    template_name = 'add_post.html'
+    fields = ['title', 'slug', 'author', 'content', 'featured_image']
+    

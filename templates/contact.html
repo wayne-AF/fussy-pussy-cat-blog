@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Contact" %}{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col text-center">
+
+            {% if is_submitted %}
+
+            <p>Thank you, your message has been received.</p>
+            <p>We will be in touch soon!</p>
+
+            {% else %}
+            <p class="h4 mb-4 text-center">Contact Fussy</p>
+            <form onsubmit="return sendMail(this);" class="text-center border border-light p-5 contact-form" action="#" method="">
+                {% csrf_token %}
+                <div class="row mb-4">
+                    <div class="col">
+                        <!-- <label for="textInput">Name</label> -->
+                        <input type="text" name="fullname" id="fullname" class="form-control mb-4" placeholder="Your name" required>
+                    </div>
+                    <div class="col"><!-- <label for="emailInput">Email</label> -->
+                        <input type="email" name="emailaddress" id="emailaddress" class="form-control mb-4" placeholder="Your email" required>
+                    </div>
+                </div>
+                
+                <!-- <label for="textarea">Textarea Message</label> -->
+                <textarea name="messagecontent" id="messagecontent" class="form-control mb-4" placeholder="Your message" required></textarea>
+            
+                <button class="btn btn-info btn-block" type="submit">Send</button>
+            </form>
+
+            {% endif %}
+        </div>
+    </div>
+</div>
+    
+<!-- <form action="" method="post">
+    <table>
+        {{ form.as_p }}
+        <tr>
+            <td>&nbsp;</td>
+            <input type="submit" value="submit">
+        </tr>
+    </table>
+    {% csrf_token %}
+</form> -->
+
+
+    
+{% endblock %}

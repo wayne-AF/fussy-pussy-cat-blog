@@ -207,3 +207,17 @@ footer {
     background: transparent;
     border: none;
 }
+
+/* --------------------------------------------------Profile */
+
+.profile-view {
+    /* width: max-content;     */
+    margin-top: 1em;    
+    padding: 1.5em;
+    background-color: #e1eedd;
+    color: #183a1d;
+    font-size: 1.5rem;
+    border-radius: 30px;
+    font-family: 'Open Sans', sans-serif;
+    /* font-weight: 300; */
+}

@@ -4,8 +4,10 @@
 
 {% block content %}
 
-    <div class="row my-3 p-3">
-        <h3>{{user.username}}'s profile</h3>
+<div class="container profile-view mx-auto">
+    <div class="row my-3 p-3 text-center">
+        <h3>{{user.username}}</h3>
+        
         <img src="{{ user.profile.profile_pic.url }}" alt="">
     </div>
     {% if user_form.errors %}
@@ -26,8 +28,8 @@
             <div class="form-row">
                 <div class="col-md-5">
                     <div class="form-group">
-                        <p>Username:</p>
-                        {{ user_form.username }}
+                        <!-- <p>Username:</p>
+                        {{ user_form.username }} -->
                         <p>Email:</p>
                         {{ user_form.email }}
                     </div>
@@ -54,4 +56,6 @@
         </form>
     </div>    
 
+</div>
+    
 {% endblock content %}

@@ -1,5 +1,5 @@
 from . import views
-from .views import profile
+from .views import profile, AddPostView
 from django.urls import path
 
 
@@ -8,6 +8,8 @@ urlpatterns = [
     path('', views.PostList.as_view(), name='home'),
     path('<slug:slug>/', views.PostDetail.as_view(), name='post_detail'),
     path('like/<slug:slug>/', views.PostLike.as_view(), name='post_like'),
-    path('profile/', profile, name='user_profile')
+    path('profile/', profile, name='user_profile'),
+    path('add_post/', AddPostView.as_view(), name='add_post'),
+    
 
 ]

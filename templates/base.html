@@ -8,17 +8,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Open+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" 
+    <link
+        href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Open+Sans:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
     </script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css" 
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css"
         integrity="sha384-QYIZto+st3yW+o8+5OHfT6S482Zsvz2WfOzpFSXMF9zqeLcFV0/wlZpMtyFcZALm" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/d0be57bc15.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <title>Fussy Pussy</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
+    </script>
+    <script type="text/javascript">
+        (function () {
+            emailjs.init("hbX5h5nlEneNV8hk2");
+            // emailjs.send("service_xhz66xf", "fussypussy_template", {name: "Fussy", notes: "Here is the message:"});
+        })();
+</script>
 </head>
 <body class="d-flex flex-column min-vh-100 main-bg">
     <header>
@@ -42,8 +53,11 @@
                             {{ user.username }}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a href="{% url 'add_post' %}" class="dropdown-item text-underline-hover">
+                                Write post
+                            </a>
                             <a href="{% url 'user_profile' %}" class="dropdown-item text-underline-hover">
-                                Profile
+                                Edit profile
                             </a>
                             <a href="{%  url 'account_logout' %}" class="dropdown-item text-underline-hover">
                                 Logout
@@ -66,7 +80,7 @@
                     </li>
                     {% endif %}
                     <li class="nav-item">
-                        <a class="nav-link text-underline-hover" href="#">
+                        <a class="nav-link text-underline-hover" href="{% url 'contact' %}">
                             Contact
                         </a>
                       </li>
@@ -104,13 +118,31 @@
         <a href='https://pngtree.com/so/cat'>cat png from pngtree.com/</a>
 
     </footer>
-    <script>
-        setTimeout(function() {
+    <!-- <script>
+        setTimeout(function () {
             let messages = document.getElementById("msg");
             let alert = new bootstrap.Alert(messages);
             alert.close();
-        }, 3000);
-    </script>
+        }, 3000); -->
+
+        <!-- // function sendMail(contactForm) {
+        //     emailjs.send("service_xhz66xf", "fussypussy_template", {
+        //             "from_name": contactForm.fullname.value,
+        //             "from_email": contactForm.emailaddress.value,
+        //             "message_content": contactForm.messagecontent.value
+        //         })
+        //         .then(
+        //             function (response) {
+        //                 console.log("SUCCESS", response);
+        //             },
+        //             function (error) {
+        //                 console.log("FAILED", error);
+        //             }
+        //         );
+        //     return false; -->
+    <!-- </script> -->
+    
+    <script src="{% static 'js/sendMail.js' %}"></script>
     
 </body>
 </html>
