@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block title %}Profile Page{% endblock title %}
 
 {% block content %}
@@ -7,8 +9,8 @@
 <div class="container profile-view mx-auto">
     <div class="row my-3 p-3 text-center">
         <h3>{{user.username}}</h3>
-        
-        <img class="rounded-circle account-img" src="{{ user.profile.profile_pic.url }}" alt="">
+        <img class="rounded-circle account-img" style="width:200px; height:200px" src="{% static 'images/default_100x100.png' %}" alt="">
+        <!-- <img class="rounded-circle account-img" style="width:90px; height:90px" src="{{ user.profile.profile_pic.url }}" alt=""> -->
     </div>
     {% if user_form.errors %}
         <div class="alert alert-danger alert-dismissible" role="alert">

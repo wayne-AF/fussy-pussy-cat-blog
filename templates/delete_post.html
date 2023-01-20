@@ -2,21 +2,30 @@
 
 {% block content %}
 
+
+
 <div class="container add-post-form">
 
-    <h3>Delete post</h3>
-    <div class="form-group">
-        <h3>Delete {{ post.title }}?</h3>
-        <form method="POST">
-            {% csrf_token %}
-            <strong>Are you sure?</strong>
-            <button>Delete post!</button>
-        </form>
-    </div>
+    {% if user.is_authenticated %}
+        {% if user.id == post.author.id %}
+            <h3>Delete {{ post.title }}</h3>
+            <div class="form-group">
+                <form method="POST">
+                    {% csrf_token %}
+                    <strong>Are you sure?</strong>
+                    <button>Delete post!</button>
+                </form>
+            </div>
+        {% else %}
+            Bad kitty!
+        {% endif %}    
+    {% else %}
+
+    Cats only in this blog, Fido!
+
+    {% endif %}
 
 </div>
-
-
 
 
 

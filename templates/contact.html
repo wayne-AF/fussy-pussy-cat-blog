@@ -17,6 +17,7 @@
 
             {% else %}
             <p class="h4 mb-4 text-center">Contact Fussy</p>
+            <div id="message" class="success"> </div>
             <form onsubmit="return sendMail(this);" class="text-center border border-light p-5 contact-form" action="#" method="">
                 {% csrf_token %}
                 <div class="row mb-4">
