@@ -9,8 +9,16 @@
             <div class="col-md-6 masthead-text">
 
                 <h1 class="post-title">{{ post.title }}</h1>
-
-                <p class="post-subtitle">{{ post.author }} | {{ post.created_on }}</p>
+                    <p class="post-subtitle">{{ post.author }} | {{ post.created_on }}</p>
+                    {% if user.is_authenticated %}
+                        {% if user.id == post.author.id %}
+                            <a href="{% url 'update_post' post.slug %}">Edit post</a>
+                            <a href="{% url 'delete_post' post.slug %}">Delete post</a>
+                        {% endif %}
+                    {% endif %}
+                
+                    
+                
             </div>
             <div class="d-none d-md-block col-md-6 masthead-image">
 

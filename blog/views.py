@@ -1,18 +1,21 @@
 from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.views import generic, View
-from django.core.mail import send_mail
-from django.views.generic import CreateView
+# from django.core.mail import send_mail
+from django.views.generic import CreateView, UpdateView, DeleteView
 from django.http import HttpResponseRedirect
+from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
+from django.urls import reverse_lazy
 from .models import Post, Profile
-from .forms import CommentForm, UpdateUserForm, UpdateProfileForm
+from .forms import CommentForm, UpdateProfileForm
 
 
 class PostList(generic.ListView):
     model = Post
-    queryset = Post.objects.filter(status=1).order_by('-created_on')
+    # queryset = Post.objects.filter(status=1).order_by('-created_on')
+    queryset = Post.objects.order_by('-created_on')
     template_name = 'index.html'
     paginate_by = 6
 
@@ -71,6 +74,7 @@ class PostDetail(View):
         )
 
 
+
 class PostLike(View):
 
     def post(self, request, slug):
@@ -85,19 +89,23 @@ class PostLike(View):
 # @login_required
 def profile(request):
     if request.method == 'POST':
-        user_form = UpdateUserForm(request.POST, instance=request.user)
+        # user_form = UpdateUserForm(request.POST, instance=request.user)
         profile_form = UpdateProfileForm(request.POST, request.FILES, instance=request.user.profile)
 
-        if user_form.is_valid() and profile_form.is_valid():
-            user_form.save()
+        if profile_form.is_valid():
+            # user_form.save()
             profile_form.save()
             messages.success(request, 'Your profile has been updated successfully!')
-            return redirect(to='profile.html')
+            return render(request, 'profile.html', {'profile_form': profile_form})
+        else:
+            for error in profile_form.errors:
+                print(profile_form)
+                print("Error: ", error)
     else:
-        user_form = UpdateUserForm(instance=request.user)
+        # user_form = UpdateUserForm(instance=request.user)
         profile_form = UpdateProfileForm(instance=request.user.profile)
 
-    return render(request, 'profile.html', {'user_form': user_form, 'profile_form': profile_form})
+    return render(request, 'profile.html', {'profile_form': profile_form})
 
 
 def contact(request):
@@ -122,4 +130,40 @@ class AddPostView(CreateView):
     model = Post
     template_name = 'add_post.html'
     fields = ['title', 'slug', 'author', 'content', 'featured_image']
+
+
+class UpdatePostView(UpdateView):
+    model = Post
+    template_name = 'update_post.html'
+    fields = ['title', 'slug', 'content', 'featured_image']
+
+
+class DeletePostView(DeleteView):
+    model = Post
+    template_name = 'delete_post.html'
+    success_url = reverse_lazy('home')
+
+
+# def UserProfile(request, username):
+#     user = get_user_model().objects.filter(username=username).first()
+#     if user:
+
+
+
+
+
+
+
+
+
+    # user = get_object_or_404(User, username=username)
+    # profile = Profile.objects.get(user=user)
+    # url_name = resolve(request_path).url_name
+
+    # context = {
+    #     'profile': profile,
+    #     'url_name': url_name,
+    # }
+
+    # return render(request, 'user_profile.html', context)
     

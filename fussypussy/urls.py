@@ -24,7 +24,11 @@ urlpatterns = [
     path('summernote/', include('django_summernote.urls')),
     path('accounts/', include('allauth.urls')),
     path('profile/', profile, name='user_profile'),
+    # add path for default profile pics
     path('contact/', contact, name='contact'),
     path('add_post/', AddPostView.as_view(), name='add_post'),
     path('', include('blog.urls'), name='blog_urls'),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] 
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

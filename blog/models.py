@@ -22,7 +22,7 @@ class Post(models.Model):
     featured_image = CloudinaryField('image', default='placeholder')
     excerpt = models.TextField(blank=True)
     created_on = models.DateTimeField(auto_now=True)
-    status = models.IntegerField(choices=STATUS, default=0)
+    status = models.IntegerField(choices=STATUS, default=1)
     likes = models.ManyToManyField(User, related_name='blog_likes', blank=True)
 
     # helpers
@@ -35,11 +35,8 @@ class Post(models.Model):
     def number_of_likes(self):
         return self.likes.count()
 
-    # def get_absolute_url(self):
-        # messages.success('Thanks for submitting a post! It will be approved and published shortly')
-        # return redirect(to='home')
-        # return reverse('post_detail', args=(str(self.id)))
-        # return f'Thanks for submitting a post {self.author}! It will be approved and published shortly!'
+    def get_absolute_url(self):
+        return reverse('home')
 
 
 class Comment(models.Model):
@@ -60,14 +57,14 @@ class Comment(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    profile_pic = models.ImageField(default='default_100x100.png', upload_to='profile_images')
+    profile_pic = models.ImageField(default='default_100x100.png', upload_to='profile_images', blank=True)
     cat_idol = models.CharField(max_length=80)
     likes = models.CharField(max_length=150)
     dislikes = models.CharField(max_length=150)
     bio = models.TextField()
 
     def __str__(self):
-        return self.user.username
+        return f'{self.user.username} Profile'
 
 
 @receiver(post_save, sender=User)

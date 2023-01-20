@@ -8,16 +8,6 @@ class CommentForm(forms.ModelForm):
         model = Comment
         fields = ('body',)
 
-
-class UpdateUserForm(forms.ModelForm):
-    username = forms.CharField(max_length=30, required=True, widget=forms.TextInput(attrs={'class': 'form-control'}))
-    email = forms.EmailField(required=True, widget=forms.TextInput(attrs={'class': 'form-control'}))
-
-    class Meta:
-        model = User
-        fields = ['username', 'email']
-
-
 class UpdateProfileForm(forms.ModelForm):
     profile_pic = forms.ImageField(widget=forms.FileInput(attrs={'class': 'form-control-file'}))
     cat_idol = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
@@ -28,3 +18,9 @@ class UpdateProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ['profile_pic', 'cat_idol', 'likes', 'dislikes', 'bio']
+
+
+# class EditForm(forms.ModelForm):
+#     class Meta:
+#         model = Post
+#         fields = ('title', 'slug', 'content', 'featured_image')
