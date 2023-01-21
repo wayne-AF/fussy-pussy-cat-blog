@@ -25,7 +25,10 @@ class Post(models.Model):
     updated_on = models.DateTimeField(auto_now=True)
     content = RichTextField(blank=True, null=True)
     # content = models.TextField()
-    featured_image = models.ImageField(null=True, blank=True, upload_to='images/')
+    # featured_image = models.ImageField(null=True, blank=True, upload_to='images/')
+    # profile_pic = models.ImageField(default='default_100x100.png', upload_to='profile_images', blank=True)
+
+    featured_image = CloudinaryField('image', default='placeholder_featured_image.png')
     excerpt = models.TextField(blank=True)
     created_on = models.DateTimeField(auto_now=True)
     status = models.IntegerField(choices=STATUS, default=1)

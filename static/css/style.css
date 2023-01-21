@@ -1,5 +1,7 @@
 /* --------------------------------------------------General */
 
+/* alternative orange #e87026 */
+
 hr {
     color: #183a1d;
 }
@@ -56,7 +58,7 @@ body {
     /* background-color: #FEFBE9; */
     /* background-image: url("../images/background-image-50.png"); */
     /* background-image: url("../images/background-image-25.png"); */
-    background-image: url("../images/background-image-10.png");
+    background-image: url("../static-images/background-image-10.png");
 
     background-repeat: repeat;
 }

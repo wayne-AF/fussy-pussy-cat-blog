@@ -23,7 +23,7 @@ class UpdateProfileForm(forms.ModelForm):
 class CreatePostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ('title', 'slug', 'author', 'content')
+        fields = ('title', 'slug', 'author', 'content', 'featured_image')
         # 'featured_image'
 
         widgets = {
@@ -31,6 +31,7 @@ class CreatePostForm(forms.ModelForm):
             'slug': forms.TextInput(attrs={'class': 'form-control'}),
             'author': forms.Select(attrs={'class': 'form-control'}),
             'content': forms.Textarea(attrs={'class': 'form-control'}),
+            # 'featured_image': forms.ImageField(attrs={'class': 'form-control'}),
         }
 
 
