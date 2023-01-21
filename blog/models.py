@@ -7,6 +7,11 @@ from cloudinary.models import CloudinaryField
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 from django.urls import reverse
+from ckeditor.fields import RichTextField
+
+# class SomeForm(forms.Form):
+#     foo = SummernoteTextFormField()
+
 
 # a tuple for status, 0 or 1 to indicate whether post is draft or published
 STATUS = ((0, 'Draft'), (1, 'Published'))
@@ -18,7 +23,8 @@ class Post(models.Model):
     # one-to-many r'ship from the user
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='blog_post')
     updated_on = models.DateTimeField(auto_now=True)
-    content = models.TextField()
+    content = RichTextField(blank=True, null=True)
+    # content = models.TextField()
     featured_image = CloudinaryField('image', default='placeholder')
     excerpt = models.TextField(blank=True)
     created_on = models.DateTimeField(auto_now=True)

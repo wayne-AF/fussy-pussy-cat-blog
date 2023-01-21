@@ -8,13 +8,11 @@
 
     <form method="POST">
         {% csrf_token %}
+        {{ form.media }}
         {{ form.as_p }}
         <button>Submit</button>
     </form>
 </div>
-
-
-
 
 
 {% endblock %}
