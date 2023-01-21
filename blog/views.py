@@ -9,7 +9,7 @@ from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from .models import Post, Profile
-from .forms import CommentForm, UpdateProfileForm
+from .forms import CommentForm, UpdateProfileForm, CreatePostForm
 
 
 class PostList(generic.ListView):
@@ -109,27 +109,14 @@ def profile(request):
 
 
 def contact(request):
-    # if request.method == "POST":
-    #     message_name = request.POST['message-name']
-    #     message_email = request.POST['message-email']
-    #     message = request.POST['message']
-        
-    #     send_mail(
-    #         'message from: ' + message_name,
-    #         message,
-    #         'contact email: ' + message_email,
-    #         ['fussycatblog@gmail.com'],
-    #     )
-
-    #     return render(request, 'contact.html', {'message_name': message_name})
-    # else:
     return render(request, 'contact.html', {})
 
 
 class AddPostView(CreateView):
     model = Post
+    form_class = CreatePostForm
     template_name = 'add_post.html'
-    fields = ['title', 'slug', 'author', 'content', 'featured_image']
+    # fields = ['title', 'slug', 'author', 'content', 'featured_image']
 
 
 class UpdatePostView(UpdateView):
