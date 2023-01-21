@@ -24,33 +24,23 @@ class CreatePostForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = ('title', 'slug', 'author', 'content', 'featured_image')
-        # 'featured_image'
 
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control'}),
             'slug': forms.TextInput(attrs={'class': 'form-control'}),
             'author': forms.Select(attrs={'class': 'form-control'}),
             'content': forms.Textarea(attrs={'class': 'form-control'}),
-            # 'featured_image': forms.ImageField(attrs={'class': 'form-control'}),
         }
 
 
-    # title = models.CharField(max_length=200, unique=True)
-    # slug = models.SlugField(max_length=200, unique=True)
-    # # one-to-many r'ship from the user
-    # author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='blog_post')
-    # updated_on = models.DateTimeField(auto_now=True)
-    # content = RichTextField(blank=True, null=True)
-    # # content = models.TextField()
-    # featured_image = models.ImageField(null=True, blank=True, upload_to='images/')
-    # excerpt = models.TextField(blank=True)
-    # created_on = models.DateTimeField(auto_now=True)
-    # status = models.IntegerField(choices=STATUS, default=1)
-    # likes = models.ManyToManyField(User, related_name='blog_likes', blank=True)
+class UpdatePostForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = ('title', 'slug', 'content', 'featured_image')
 
-
-
-# class EditForm(forms.ModelForm):
-#     class Meta:
-#         model = Post
-#         fields = ('title', 'slug', 'content', 'featured_image')
+        widgets = {
+            'title': forms.TextInput(attrs={'class': 'form-control'}),
+            'slug': forms.TextInput(attrs={'class': 'form-control'}),
+            # 'author': forms.Select(attrs={'class': 'form-control'}),
+            'content': forms.Textarea(attrs={'class': 'form-control'}),
+        }

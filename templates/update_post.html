@@ -5,19 +5,19 @@
 <div class="container add-post-form">
 
     {% if user.is_authenticated %}
-        {% if user.id == post.author.id %}
-            <h3>Update post</h3>
-            <div class="form-group">
-                <form method="POST">
-                    {% csrf_token %}
-                    {{ form.media }}
-                    {{ form.as_p }}
-                    <button>Update</button>
-                </form>
-            </div>
-        {% else %}
-            Bad kitty!
-        {% endif %}    
+    {% if user.id == post.author.id %}
+    <h3>Update post</h3>
+    <div class="form-group">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.media }}
+            {{ form.as_p }}
+            <button>Update</button>
+        </form>
+    </div>
+    {% else %}
+    Bad kitty!
+    {% endif %}
     {% else %}
 
     Cats only in this blog, Fido!

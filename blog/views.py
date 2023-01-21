@@ -9,7 +9,7 @@ from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from .models import Post, Profile
-from .forms import CommentForm, UpdateProfileForm, CreatePostForm
+from .forms import CommentForm, UpdateProfileForm, CreatePostForm, UpdatePostForm
 
 
 class PostList(generic.ListView):
@@ -121,8 +121,9 @@ class AddPostView(CreateView):
 
 class UpdatePostView(UpdateView):
     model = Post
+    form_class = UpdatePostForm
     template_name = 'update_post.html'
-    fields = ['title', 'slug', 'content', 'featured_image']
+    # fields = ['title', 'slug', 'content', 'featured_image']
 
 
 class DeletePostView(DeleteView):
