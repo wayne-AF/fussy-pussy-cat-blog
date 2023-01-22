@@ -1,7 +1,7 @@
 from . import views
 from .views import AddPostView, UpdatePostView, DeletePostView, UserEditView, PasswordsChangeView
 from django.urls import path
-from django.contrib.auth import views as auth_views
+# from django.contrib.auth import views as auth_views
 
 
 urlpatterns = [
