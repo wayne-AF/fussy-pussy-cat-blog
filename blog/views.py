@@ -12,12 +12,13 @@ from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from .models import Post, Profile
-from .forms import CommentForm, EditProfileForm, CreatePostForm, UpdatePostForm
+from .forms import CommentForm, EditProfileForm, CreatePostForm, UpdatePostForm, ChangePasswordForm
 # UpdateProfileForm
 
 
 class PasswordsChangeView(PasswordChangeView):
-    form_class = PasswordChangeForm
+    # form_class = PasswordChangeForm
+    form_class = ChangePasswordForm
     success_url = reverse_lazy('password_success')
     # success_url = reverse_lazy('')
 
