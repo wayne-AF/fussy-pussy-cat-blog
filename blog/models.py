@@ -66,14 +66,17 @@ class Comment(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    profile_pic = models.ImageField(default='default_100x100.png', upload_to='profile_images', blank=True)
-    cat_idol = models.CharField(max_length=80)
+    profile_pic = CloudinaryField('image', default='default_profile_image.png')
+
+    # profile_pic = models.ImageField(default='default_100x100.png', upload_to='profile_images', blank=True)
+    breed = models.CharField(max_length=50, blank=True)
+    favourite_quote = models.CharField(max_length=200, blank=True)
     likes = models.CharField(max_length=150)
     dislikes = models.CharField(max_length=150)
-    bio = models.TextField()
+    about = models.TextField(blank=True)
 
     def __str__(self):
-        return f'{self.user.username} Profile'
+        return f'{self.user.username}\'s Profile'
 
 
 @receiver(post_save, sender=User)

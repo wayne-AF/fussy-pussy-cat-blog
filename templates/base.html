@@ -53,10 +53,10 @@
                             {{ user.username }}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a href="{% url 'add_post' %}" class="dropdown-item text-underline-hover">
+                            <a href="{% url 'add post' %}" class="dropdown-item text-underline-hover">
                                 Write post
                             </a>
-                            <a href="{% url 'user_profile' %}" class="dropdown-item text-underline-hover">
+                            <a href="{% url 'edit_profile' request.user.id %}" class="dropdown-item text-underline-hover">
                                 Edit profile
                             </a>
                             <a href="{%  url 'account_logout' %}" class="dropdown-item text-underline-hover">

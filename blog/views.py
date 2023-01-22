@@ -4,6 +4,7 @@ from django.views import generic, View
 from django.views.generic import CreateView, UpdateView, DeleteView
 from django.http import HttpResponseRedirect
 from django.contrib.auth import get_user_model
+from django.contrib.auth.forms import UserChangeForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
@@ -86,26 +87,8 @@ class PostLike(View):
         return HttpResponseRedirect(reverse('post_detail', args=[slug]))
 
 
-# @login_required
-def profile(request):
-    if request.method == 'POST':
-        # user_form = UpdateUserForm(request.POST, instance=request.user)
-        profile_form = UpdateProfileForm(request.POST, request.FILES, instance=request.user.profile)
+# # @login_required
 
-        if profile_form.is_valid():
-            # user_form.save()
-            profile_form.save()
-            messages.success(request, 'Your profile has been updated successfully!')
-            return render(request, 'profile.html', {'profile_form': profile_form})
-        else:
-            for error in profile_form.errors:
-                print(profile_form)
-                print("Error: ", error)
-    else:
-        # user_form = UpdateUserForm(instance=request.user)
-        profile_form = UpdateProfileForm(instance=request.user.profile)
-
-    return render(request, 'profile.html', {'profile_form': profile_form})
 
 
 def contact(request):
@@ -116,14 +99,12 @@ class AddPostView(CreateView):
     model = Post
     form_class = CreatePostForm
     template_name = 'add_post.html'
-    # fields = ['title', 'slug', 'author', 'content', 'featured_image']
 
 
 class UpdatePostView(UpdateView):
     model = Post
     form_class = UpdatePostForm
     template_name = 'update_post.html'
-    # fields = ['title', 'slug', 'content', 'featured_image']
 
 
 class DeletePostView(DeleteView):
@@ -132,26 +113,30 @@ class DeletePostView(DeleteView):
     success_url = reverse_lazy('home')
 
 
-# def UserProfile(request, username):
-#     user = get_user_model().objects.filter(username=username).first()
-#     if user:
+class UserEditView(UpdateView):
+    model = Profile
+    form_class = UserChangeForm
+    template_name = 'edit_profile.html'
 
+    # def edit_profile_form(request):
+    #     if request.method == 'POST':
+    #         # user_form = UpdateUserForm(request.POST, instance=request.user)
+    #         profile_form = UpdateProfileForm(request.POST, request.FILES, instance=request.user.profile)
 
+    #         if profile_form.is_valid():
+    #             # user_form.save()
+    #             profile_form.save()
+    #             messages.success(request, 'Your profile has been updated successfully!')
+    #             return render(request, 'profile.html', {'profile_form': profile_form})
+    #         else:
+    #             for error in profile_form.errors:
+    #                 print(profile_form)
+    #                 print("Error: ", error)
+    #     else:
+    #         # user_form = UpdateUserForm(instance=request.user)
+    #         profile_form = UpdateProfileForm(instance=request.user.profile)
 
-
-
-
-
-
-
-    # user = get_object_or_404(User, username=username)
-    # profile = Profile.objects.get(user=user)
-    # url_name = resolve(request_path).url_name
-
-    # context = {
-    #     'profile': profile,
-    #     'url_name': url_name,
-    # }
-
-    # return render(request, 'user_profile.html', context)
+    #     return render(request, 'edit_profile.html', {'profile_form': profile_form})
     
+    def get_object(self):
+        return self.request.user
