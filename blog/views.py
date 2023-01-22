@@ -4,13 +4,25 @@ from django.views import generic, View
 from django.views.generic import CreateView, UpdateView, DeleteView
 from django.http import HttpResponseRedirect
 from django.contrib.auth import get_user_model
-from django.contrib.auth.forms import UserChangeForm
+from django.contrib.auth.models import User
+from django.contrib.auth.views import PasswordChangeView
+from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from .models import Post, Profile
-from .forms import CommentForm, UpdateProfileForm, CreatePostForm, UpdatePostForm
+from .forms import CommentForm, EditProfileForm, CreatePostForm, UpdatePostForm
+# UpdateProfileForm
+
+
+class PasswordsChangeView(PasswordChangeView):
+    form_class = PasswordChangeForm
+    success_url = reverse_lazy('password_success')
+    # success_url = reverse_lazy('')
+
+def password_success(request):
+    return render(request, 'password_success.html', {})
 
 
 class PostList(generic.ListView):
@@ -113,10 +125,12 @@ class DeletePostView(DeleteView):
     success_url = reverse_lazy('home')
 
 
+
 class UserEditView(UpdateView):
-    model = Profile
-    form_class = UserChangeForm
-    template_name = 'edit_profile.html'
+    model = User
+    form_class = EditProfileForm
+    template_name = 'edit_account.html'
+    success_url = reverse_lazy('home')
 
     # def edit_profile_form(request):
     #     if request.method == 'POST':
