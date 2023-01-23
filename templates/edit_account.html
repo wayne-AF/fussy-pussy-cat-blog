@@ -8,11 +8,10 @@
 
 <div class="container">
 
-
-    
-    <h3>EDIT SETTINGS</h3>
     <div class="form-group">
-        <form method="POST" enctype="multipart/form-data">
+        <h3>EDIT SETTINGS</h3>
+        <hr>
+        <form method="POST" >
             {% csrf_token %}
             
             {{ form.as_p }}
@@ -20,10 +19,6 @@
         </form>
     </div>
     
-
 </div>
 
-
-
-    
 {% endblock content %}

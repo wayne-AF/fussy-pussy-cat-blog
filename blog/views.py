@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.views import generic, View
-# from django.core.mail import send_mail
 from django.views.generic import CreateView, UpdateView, DeleteView, DetailView
 from django.http import HttpResponseRedirect
 from django.contrib.auth import get_user_model
@@ -13,7 +12,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from .models import Post, Profile
 from .forms import CommentForm, EditProfileForm, CreatePostForm, UpdatePostForm, ChangePasswordForm, UpdateProfileForm
-# UpdateProfileForm
+
 
 # Updating user's profile
 class EditProfilePageView(UpdateView):
@@ -23,8 +22,6 @@ class EditProfilePageView(UpdateView):
     # success_url = reverse_lazy('profile_page_view')
     success_url = reverse_lazy('home')
 
-    # def get_object(self):
-    #     return self.request.user
 
 # Viewing another user's profile page
 class ProfilePageView(DetailView):
@@ -39,11 +36,11 @@ class ProfilePageView(DetailView):
         context["profile_user"] = profile_user
         return context
 
+
 class PasswordsChangeView(PasswordChangeView):
-    # form_class = PasswordChangeForm
     form_class = ChangePasswordForm
     success_url = reverse_lazy('password_success')
-    # success_url = reverse_lazy('')
+    
 
 def password_success(request):
     return render(request, 'password_success.html', {})
@@ -51,14 +48,12 @@ def password_success(request):
 
 class PostList(generic.ListView):
     model = Post
-    # queryset = Post.objects.filter(status=1).order_by('-created_on')
     queryset = Post.objects.order_by('-created_on')
     template_name = 'index.html'
     paginate_by = 6
 
 
 class PostDetail(View):
-
     def get(self, request, slug, *args, **kwargs):
         queryset = Post.objects.filter(status=1)
         post = get_object_or_404(queryset, slug=slug)
@@ -112,7 +107,6 @@ class PostDetail(View):
 
 
 class PostLike(View):
-
     def post(self, request, slug):
         post = get_object_or_404(Post, slug=slug)
         if post.likes.filter(id=request.user.id).exists():
@@ -154,25 +148,6 @@ class UserEditView(UpdateView):
     template_name = 'edit_account.html'
     success_url = reverse_lazy('home')
 
-    # def edit_profile_form(request):
-    #     if request.method == 'POST':
-    #         # user_form = UpdateUserForm(request.POST, instance=request.user)
-    #         profile_form = UpdateProfileForm(request.POST, request.FILES, instance=request.user.profile)
-
-    #         if profile_form.is_valid():
-    #             # user_form.save()
-    #             profile_form.save()
-    #             messages.success(request, 'Your profile has been updated successfully!')
-    #             return render(request, 'profile.html', {'profile_form': profile_form})
-    #         else:
-    #             for error in profile_form.errors:
-    #                 print(profile_form)
-    #                 print("Error: ", error)
-    #     else:
-    #         # user_form = UpdateUserForm(instance=request.user)
-    #         profile_form = UpdateProfileForm(instance=request.user.profile)
-
-    #     return render(request, 'edit_profile.html', {'profile_form': profile_form})
     
     def get_object(self):
         return self.request.user

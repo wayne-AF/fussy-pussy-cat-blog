@@ -156,6 +156,10 @@ body {
     border-radius: 25px;
 }
 
+.django-ckeditor-widget {
+    width: 100%;
+  }
+
 
 /* --------------------------------------------------Footer */
 
