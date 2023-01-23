@@ -57,12 +57,12 @@
         <ul class="pagination justify-content-center">
             {% if page_obj.has_previous %}
             <li>
-                <a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV </a>
+                <a href="?page={{ page_obj.previous_page_number }}" class=" btn">&laquo; PREV </a>
             </li>
             {% endif %}
             {% if page_obj.has_next %}
             <li>
-                <a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a>
+                <a href="?page={{ page_obj.next_page_number }}" class=" btn"> NEXT &raquo;</a>
             </li>
             {% endif %}
         </ul>

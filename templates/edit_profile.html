@@ -8,18 +8,28 @@
 
 <div class="container">
 
+{% if user.is_authenticated %}
+
+        
+        <div class="form-group">
+            <h3>Edit profile</h3>
+            <hr>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                {{ form.as_p }}
+                <button type="submit" class="btn">Update profile</button>
+            </form>
+        </div>
 
     
-    <h3>Edit profile</h3>
-    <div class="form-group">
-        <form method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            
-            {{ form.as_p }}
-            <button>Update</button>
-        </form>
-    </div>
-    
+
+{% else %}
+
+<h3>Cats only in this blog, Fido!</h3>
+
+{% endif %}
+
 
 </div>
 

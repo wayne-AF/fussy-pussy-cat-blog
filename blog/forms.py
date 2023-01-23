@@ -31,26 +31,17 @@ class EditProfileForm(UserChangeForm):
         fields = ('username', 'email')
 
 
+class UpdateProfileForm(forms.ModelForm):
+    profile_pic = forms.ImageField(widget=forms.FileInput(attrs={'class': 'form-control-files'}))
+    favourite_quote = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+    breed = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+    likes = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+    dislikes = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+    about = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control'}))
 
-# class UpdateProfileForm(forms.ModelForm):
-#     class Meta:
-#         model = Profile
-#         fields = ('favourite_quote', 'likes', 'dislikes', 'about', 'profile_pic')
-
-#         widgets = {
-#             'favourite_quote': forms.TextInput(attrs={'class': 'form-control'}),
-#             'likes': forms.TextInput(attrs={'class': 'form-control'}),
-#             'dislikes': forms.TextInput(attrs={'class': 'form-control'}),
-#             'about': forms.Textarea(attrs={'class': 'form-control'}),
-#             'profile_pic': forms.FileInput(attrs={'class': 'form-control-file'}),
-#         }
-
-    # profile_pic = forms.ImageField(widget=forms.FileInput(attrs={'class': 'form-control-file'}))
-    # favourite_quote = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
-    # likes = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
-    # dislikes = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
-    # bio = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 5}))
-
+    class Meta:
+        model = Profile
+        fields = ('favourite_quote', 'breed', 'likes', 'dislikes', 'about', 'profile_pic')
 
 
 class CreatePostForm(forms.ModelForm):

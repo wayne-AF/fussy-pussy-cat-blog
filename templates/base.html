@@ -56,8 +56,14 @@
                             <a href="{% url 'add_post' %}" class="dropdown-item text-underline-hover">
                                 Write post
                             </a>
-                            <a href="{% url 'edit_account' request.user.id %}" class="dropdown-item text-underline-hover">
-                                Edit account
+                            <a href="{% url 'profile_page_view' user.profile.id %}" class="dropdown-item text-underline-hover">
+                                View profile
+                            </a>
+                            <a href="{% url 'edit_profile_page' user.profile.id %}" class="dropdown-item text-underline-hover">
+                                Edit profile
+                            </a>
+                            <a href="{% url 'edit_account_page' request.user.id %}" class="dropdown-item text-underline-hover">
+                                Edit settings
                             </a>
                             
                             <a href="{%  url 'account_logout' %}" class="dropdown-item text-underline-hover">

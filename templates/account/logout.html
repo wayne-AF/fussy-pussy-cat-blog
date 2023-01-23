@@ -6,24 +6,24 @@
 
 {% block content %}
 <div class="container">
-    <div class="row">
-        <div class="col-md-8 mt-3 offset-md-2">
-            <h3>{% trans "Log Out" %}</h3>
-
-            <p>{% trans 'Are you sure you want to log out, ' %}{{ user.username }}?</p>
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-8 mt-3 offset-md-2">
+                <h3>{% trans "Log Out" %}</h3>
+                <hr>
+    
+                <p>{% trans 'Are you sure you want to log out, ' %}{{ user.username }}?</p>
+                <form method="post" action="{% url 'account_logout' %}">
+                    {% csrf_token %}
+                    {% if redirect_field_value %}
+                    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                    {% endif %}
+                    <button class="btn btn-signup right" type="submit">{% trans 'Log Out' %}</button>
+                </form>
+            </div>
         </div>
+        
     </div>
-    <div class="row">
-        <div class="col-md-8 mt-3 offset-md-2">
-
-            <form method="post" action="{% url 'account_logout' %}">
-                {% csrf_token %}
-                {% if redirect_field_value %}
-                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-                {% endif %}
-                <button class="btn btn-signup right" type="submit">{% trans 'Log Out' %}</button>
-            </form>
-        </div>
-    </div>
+    
 </div>
 {% endblock %}

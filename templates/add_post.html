@@ -2,24 +2,26 @@
 
 {% block content %}
 
-<div class="container add-post-form">
+<div class="container ">
 
 
     {% if user.is_authenticated %}
 
-    <h3>Add post</h3>
+    
 
     <div class="form-group">
+        <h3>Add post</h3>
+        <hr>
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form.media }}
             {{ form.as_p }}
-            <button>Submit</button>
+            <button type="submit" class="btn">Submit</button>
         </form>
     </div>
     {% else %}
 
-    Cats only in this blog, Fido!
+    <h3>Cats only in this blog, Fido!</h3>
 
     {% endif %}
 

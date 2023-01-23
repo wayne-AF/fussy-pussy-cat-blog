@@ -1,6 +1,18 @@
 /* --------------------------------------------------General */
 
-/* alternative orange #e87026 */
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+h3 {
+    color: #183a1d;
+    text-align: center;
+    font-weight: 700;
+}
+
+label {
+    color: #183a1d;
+}
 
 hr {
     color: #183a1d;
@@ -8,6 +20,19 @@ hr {
 
 .text-underline-hover:hover {
     text-decoration: underline;
+}
+
+.btn {
+    background-color: #183a1d;
+    color: white;
+}
+
+.btn:hover {
+    background-color: #f0a04b;
+}
+
+.link {
+    color: #183a1d;
 }
 
 /* --------------------------------------------------Navbar */
@@ -25,6 +50,10 @@ hr {
     font-weight: 900;
     color: #f0a04b;
     font-size: 3rem;
+}
+
+.navbar-brand:hover {
+    color: #183a1d;
 }
 
 .nav-link {
@@ -114,6 +143,15 @@ body {
 }
 
 
+/* --------------------------------------------------Forms */
+
+.form-group {
+    background-color: #e1eedd;
+    padding: 1em;
+    border-radius: 25px;
+}
+
+
 /* --------------------------------------------------Footer */
 
 footer {
@@ -148,7 +186,7 @@ footer {
 }
 
 .masthead-text {
-    background-color: #445261;
+    background-color: #e1eedd;
     color: white;
     position: relative;
 }
@@ -159,7 +197,7 @@ footer {
 }
 
 .masthead-image:after {
-    content: "";
+    /* content: ""; */
     position: absolute;
     top: 0;
     right: 90%;
@@ -174,12 +212,12 @@ footer {
 
 .post-link {
     text-decoration: none;
-    color: #445261;
+    color: #183a1d;
 }
 
 .post-link:hover,
 .page-link {
-    color: #E84610;
+    color: #f0a04b;
 }
 
 .post-title {
@@ -192,7 +230,7 @@ footer {
     color: lightgray;
 }
 
-.btn-signup {
+/* .btn-signup {
     background-color: #23BBBB;
     color: #fff;
 }
@@ -201,7 +239,7 @@ footer {
 .btn-signup:active {
     background-color: #fff;
     color: #23BBBB;
-}
+} */
 
 .link {
     color: #23BBBB;

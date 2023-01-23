@@ -12,8 +12,19 @@ from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from .models import Post, Profile
-from .forms import CommentForm, EditProfileForm, CreatePostForm, UpdatePostForm, ChangePasswordForm
+from .forms import CommentForm, EditProfileForm, CreatePostForm, UpdatePostForm, ChangePasswordForm, UpdateProfileForm
 # UpdateProfileForm
+
+# Updating user's profile
+class EditProfilePageView(UpdateView):
+    model = Profile
+    template_name = 'edit_profile.html'
+    form_class = UpdateProfileForm
+    # success_url = reverse_lazy('profile_page_view')
+    success_url = reverse_lazy('home')
+
+    # def get_object(self):
+    #     return self.request.user
 
 # Viewing another user's profile page
 class ProfilePageView(DetailView):
@@ -21,7 +32,6 @@ class ProfilePageView(DetailView):
     template_name = 'user_profile.html'
 
     def get_context_data(self, *args, **kwargs):
-        # all_users = Profile.objects.all()
         context = super(ProfilePageView, self).get_context_data(*args, **kwargs)
 
         profile_user = get_object_or_404(Profile, id=self.kwargs['pk'])
@@ -101,7 +111,6 @@ class PostDetail(View):
         )
 
 
-
 class PostLike(View):
 
     def post(self, request, slug):
@@ -111,10 +120,6 @@ class PostLike(View):
         else:
             post.likes.add(request.user)
         return HttpResponseRedirect(reverse('post_detail', args=[slug]))
-
-
-# # @login_required
-
 
 
 def contact(request):
@@ -137,7 +142,6 @@ class DeletePostView(DeleteView):
     model = Post
     template_name = 'delete_post.html'
     success_url = reverse_lazy('home')
-
 
 
 class UserEditView(UpdateView):
