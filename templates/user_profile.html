@@ -1,61 +1,27 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Profile Page{% endblock title %}
 
 {% block content %}
 
-<div class="container profile-view mx-auto">
-    <div class="row my-3 p-3 text-center">
-        <h3>{{user.username}}</h3>
-        
-        <img src="{{ user.profile.profile_pic.url }}" alt="">
-    </div>
-    {% if user_form.errors %}
-        <div class="alert alert-danger alert-dismissible" role="alert">
-            <div id="form-errors">
-                {% for key, value in user_forms.errors.items %}
-                <strong>{{ value }}</strong>
-                {% endfor %}    
-            </div>
-            <button type="button" data-dismiss="alert" aria-label="close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-    {% endif %}
-    <div class="form-content">
-        <form method="post">
-            {% csrf_token %}
-            <div class="form-row">
-                <div class="col-md-5">
-                    <div class="form-group">
-                        <!-- <p>Username:</p>
-                        {{ user_form.username }} -->
-                        <p>Email:</p>
-                        {{ user_form.email }}
-                    </div>
-                    <div class="form-group">
-                        <p>Change avatar:</p>
-                        {{ profile_form.profile_pic }}
-                    </div>
-                    <div>
-                        <p>Likes:</p>
-                        {{ profile_form.likes }}
-                        <p>Dislikes:</p>
-                        {{ profile_form.dislikes }}
-                        <p>Idol:</p>
-                        {{ profile_form.cat_idol}}
-                    </div>
-                    <div>
-                        <p>Bio:</p>
-                        {{ profile_form.bio }}
-                    </div>
-                </div>
-            </div>
-            <button type="submit" class="btn-submit">Save changes</button>
-            <button type="reset" class="btn-reset">Reset</button>
-        </form>
-    </div>    
+<h3>{{ profile_user }}</h3>
+{% if profile_user.profile_pic %}
+    <img src="{{ profile_user.profile_pic.url }}" height=250 width=250 class="rounded-circle" alt="">
+<!-- <img src="{{ default_profile_image.png }}" height=100 width=100 class="rounded-circle" alt=""> -->
+{% else %}
+    <img src="{% static 'static-images/default_profile_image.png' %}" height=300 width=300 class="rounded-circle" alt="">
+{% endif %}
+<h5>{{ profile_user.favourite_quote }}</h5>
+<small class="text-muted">Breed</small>
+<h6>{{ profile_user.breed }}</h6>
+<small class="text-muted">Likes</small>
+<h6>{{ profile_user.likes }}</h6>
+<small class="text-muted">Dislikes</small>
+<h6>{{ profile_user.dislikes }}</h6>
+<small class="text-muted">About</small>
+<h6>{{ profile_user.about }}</h6>
 
-</div>
+
     
 {% endblock content %}

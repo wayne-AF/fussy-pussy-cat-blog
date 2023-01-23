@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.views import generic, View
 # from django.core.mail import send_mail
-from django.views.generic import CreateView, UpdateView, DeleteView
+from django.views.generic import CreateView, UpdateView, DeleteView, DetailView
 from django.http import HttpResponseRedirect
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User
@@ -15,6 +15,19 @@ from .models import Post, Profile
 from .forms import CommentForm, EditProfileForm, CreatePostForm, UpdatePostForm, ChangePasswordForm
 # UpdateProfileForm
 
+# Viewing another user's profile page
+class ProfilePageView(DetailView):
+    model = Profile
+    template_name = 'user_profile.html'
+
+    def get_context_data(self, *args, **kwargs):
+        # all_users = Profile.objects.all()
+        context = super(ProfilePageView, self).get_context_data(*args, **kwargs)
+
+        profile_user = get_object_or_404(Profile, id=self.kwargs['pk'])
+
+        context["profile_user"] = profile_user
+        return context
 
 class PasswordsChangeView(PasswordChangeView):
     # form_class = PasswordChangeForm

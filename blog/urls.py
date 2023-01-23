@@ -1,5 +1,5 @@
 from . import views
-from .views import AddPostView, UpdatePostView, DeletePostView, UserEditView, PasswordsChangeView
+from .views import AddPostView, UpdatePostView, DeletePostView, UserEditView, PasswordsChangeView, ProfilePageView
 from django.urls import path
 # from django.contrib.auth import views as auth_views
 
@@ -15,7 +15,6 @@ urlpatterns = [
     path('delete/<slug:slug>/', DeletePostView.as_view(), name='delete_post'),
     path('edit_account/password/', PasswordsChangeView.as_view(template_name='change-password.html')),
     path('password/password_success/', views.password_success, name='password_success'),
-
-    
+    path('<int:pk>/profile/', ProfilePageView.as_view(), name='profile_page_view'),
 
 ]
