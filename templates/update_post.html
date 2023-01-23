@@ -6,7 +6,7 @@
 
     {% if user.is_authenticated %}
     {% if user.id == post.author.id %}
-    <h3>Update post</h3>
+    <h3>UPDATE POST</h3>
     <div class="form-group">
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}

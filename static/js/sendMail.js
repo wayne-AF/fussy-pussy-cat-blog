@@ -9,12 +9,12 @@ function sendMail(contactForm) {
     .then(
         function(response) {
             messageContainer.classList.add('success')
-            messageContainer.textContent = 'You submitted the form'
+            messageContainer.textContent = 'Thanks for your message! We\'ll be in touch soon!';
             return("SUCCESS", response);
         },
         function(error) {
             messageContainer.classList.add('error')
-            messageContainer.textContent = 'You submitted the form'
+            messageContainer.textContent = 'Oops! There was an error in seind your message! Try again!';
             return("FAILED", error);
         }
     );

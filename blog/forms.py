@@ -37,7 +37,7 @@ class UpdateProfileForm(forms.ModelForm):
     breed = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
     likes = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
     dislikes = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
-    about = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control'}))
+    about = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 5}))
 
     class Meta:
         model = Profile
@@ -47,12 +47,14 @@ class UpdateProfileForm(forms.ModelForm):
 class CreatePostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ('title', 'slug', 'author', 'content', 'featured_image')
+        fields = ('title', 'content', 'featured_image')
 
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control'}),
-            'slug': forms.TextInput(attrs={'class': 'form-control'}),
-            'author': forms.Select(attrs={'class': 'form-control'}),
+            # 'slug': forms.TextInput(attrs={'class': 'form-control'}),
+            # 'author': forms.TextInput(attrs={'class': 'form-control', 'value': '', 'id': 'author-field', }),
+
+            # 'author': forms.Select(attrs={'class': 'form-control'}),
             'content': forms.Textarea(attrs={'class': 'form-control'}),
             'featured_image': forms.FileInput(attrs={'class': 'form-control-file'})
         }
@@ -61,11 +63,11 @@ class CreatePostForm(forms.ModelForm):
 class UpdatePostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ('title', 'slug', 'content', 'featured_image')
+        fields = ('title', 'content', 'featured_image')
 
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control'}),
-            'slug': forms.TextInput(attrs={'class': 'form-control'}),
+            # 'slug': forms.TextInput(attrs={'class': 'form-control'}),
             # 'author': forms.Select(attrs={'class': 'form-control'}),
             'content': forms.Textarea(attrs={'class': 'form-control'}),
             'featured_image': forms.FileInput(attrs={'class': 'form-control-file'}),

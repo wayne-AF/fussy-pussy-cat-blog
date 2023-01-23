@@ -5,23 +5,37 @@
 
 {% block content %}
 
-<h3>{{ profile_user }}</h3>
-{% if profile_user.profile_pic %}
-    <img src="{{ profile_user.profile_pic.url }}" height=250 width=250 class="rounded-circle" alt="">
-<!-- <img src="{{ default_profile_image.png }}" height=100 width=100 class="rounded-circle" alt=""> -->
-{% else %}
-    <img src="{% static 'static-images/default_profile_image.png' %}" height=300 width=300 class="rounded-circle" alt="">
-{% endif %}
-<h5>{{ profile_user.favourite_quote }}</h5>
-<small class="text-muted">Breed</small>
-<h6>{{ profile_user.breed }}</h6>
-<small class="text-muted">Likes</small>
-<h6>{{ profile_user.likes }}</h6>
-<small class="text-muted">Dislikes</small>
-<h6>{{ profile_user.dislikes }}</h6>
-<small class="text-muted">About</small>
-<h6>{{ profile_user.about }}</h6>
-
+<div class="container">
+    <div class="row">
+        <div class="profile-card card">
+            <div class="col-lg-4 col-md-4 my-auto justify-content-center">
+        
+                <div class="img1">
+                    {% if profile_user.profile_pic %}
+                    <img src="{{ profile_user.profile_pic.url }}" height=250 width=250 class="rounded-circle" alt="">
+                    <!-- <img src="{{ default_profile_image.png }}" height=100 width=100 class="rounded-circle" alt=""> -->
+                    {% else %}
+                    <img src="{% static 'static-images/default_profile_image.png' %}" height=300 width=300 class="rounded-circle" alt="">
+                    {% endif %}
+                </div>
+                <div class="profile-name text-align-center"><h3>{{ profile_user }}</h3></div>
+                <hr>
+                <main-text>
+                  <h4>{{ profile_user.favourite_quote }}</h4>
+                  <small class="text-muted">breed</small>
+                  <h6>{{ profile_user.breed }}</h6>
+                  <small class="text-muted">likes</small>
+                  <h6>{{ profile_user.likes }}</h6>
+                  <small class="text-muted">dislikes</small>
+                  <h6>{{ profile_user.dislikes }}</h6>
+                  <small class="text-muted">about</small>
+                  <h6>{{ profile_user.about }}</h6>
+                </main-text>
+              </div>
+        </div>
+      
+    </div>
+  </div>
 
     
 {% endblock content %}

@@ -8,6 +8,7 @@ from django.dispatch import receiver
 from django.db.models.signals import post_save
 from django.urls import reverse
 from ckeditor.fields import RichTextField
+from autoslug import AutoSlugField
 
 # class SomeForm(forms.Form):
 #     foo = SummernoteTextFormField()
@@ -19,7 +20,8 @@ STATUS = ((0, 'Draft'), (1, 'Published'))
 
 class Post(models.Model):
     title = models.CharField(max_length=200, unique=True)
-    slug = models.SlugField(max_length=200, unique=True)
+    slug = AutoSlugField(populate_from='title', editable=False)
+    # slug = models.SlugField(max_length=200, unique=True)
     # one-to-many r'ship from the user
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='blog_post')
     updated_on = models.DateTimeField(auto_now=True)

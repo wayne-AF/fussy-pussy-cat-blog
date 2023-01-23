@@ -7,7 +7,7 @@ body {
 h3 {
     color: #183a1d;
     text-align: center;
-    font-weight: 700;
+    font-weight: 400;
 }
 
 label {
@@ -141,6 +141,11 @@ body {
 .unliked-paw {
     color: #FEFBE9;
 }
+
+/* .profile-card {
+    border-radius: 25px;
+    background-color: 
+} */
 
 
 /* --------------------------------------------------Forms */
