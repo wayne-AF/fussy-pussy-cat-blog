@@ -25,19 +25,11 @@
                                     <p class="card-text">{{ post.excerpt }}</p>
                                 </a>
                                 <hr />
-                                {% if updated_on %}
-                                <p class="card-text text-muted h6">Published: {{ post.created_on }}
-                                </p>
-                                <p class="card-text text-muted h6">Updated: {{ post.updated_on }}
-                                </p>
-                                <i class="fa-solid fa-paw"></i>{{ post.number_of_likes }}
-                                {% else %}
-                                <p class="card-text text-muted h6">Updated: {{ post.updated_on }}
-                                </p>
+                                
                                 <p class="card-text text-muted h6">Published: {{ post.created_on }}
                                 </p>
                                 <i class="fa-solid fa-paw"></i>{{ post.number_of_likes }}
-                                {% endif %}
+                                
                             </div>
                         </div>
                     </div>

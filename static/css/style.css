@@ -195,7 +195,7 @@ footer {
 }
 
 .masthead-text {
-    background-color: #e1eedd;
+    background-color: #f0a04b;
     color: white;
     position: relative;
 }
@@ -212,7 +212,7 @@ footer {
     right: 90%;
     height: 100%;
     width: 150%;
-    background: #445261;
+    background: #f0a04b;
     -webkit-transform: skew(15deg);
     -moz-transform: skew(15deg);
     transform: skew(15deg);
@@ -229,15 +229,44 @@ footer {
     color: #f0a04b;
 }
 
-.post-title {
-    margin-top: 20%;
+.title-section {
+    margin-bottom: 10%;
     margin-left: 5%;
+}
+
+.post-title {
+    margin-top: 10%;
+}
+
+.edit-link {
+    color: white;
+}
+
+.edit-link:hover {
+    color:#f0a04b;
+    background-color: white;
+    padding: 5px;
+    border-radius: 10px;
 }
 
 .post-subtitle {
     margin-left: 5%;
-    color: lightgray;
+    margin-bottom: 5%;
+    color:  white;
 }
+
+.author-profile-link {
+    font-size: 1.25rem;
+    color: white;
+}
+
+.author-profile-link:hover {
+    color:#f0a04b;
+    background-color: white;
+    padding: 5px;
+    border-radius: 10px;
+}
+
 
 /* .btn-signup {
     background-color: #23BBBB;
@@ -277,7 +306,7 @@ footer {
     background-color: #e1eedd;
     color: #183a1d;
     font-size: 1.5rem;
-    border-radius: 30px;
+    border-radius: 25px;
     font-family: 'Open Sans', sans-serif;
     /* font-weight: 300; */
 }

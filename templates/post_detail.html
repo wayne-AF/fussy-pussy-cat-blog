@@ -10,8 +10,20 @@
     <div class="container">
         <div class="row g-0">
             <div class="col-md-6 masthead-text">
-
-                <h1 class="post-title">{{ post.title }}</h1>
+                <div class="title-section">
+                    <h1 class="post-title">{{ post.title }}</h1>
+                        {% if user.is_authenticated %}
+                        {% if user.id == post.author.id %}
+                        <div>
+                            <a class="edit-link" href="{% url 'update_post' post.slug %}">Edit post</a>
+                            <a class="edit-link" href="{% url 'delete_post' post.slug %}">Delete post</a>
+                        </div>
+                            
+                        {% endif %}
+                        {% endif %}
+                
+                </div>
+                
                     
                     <p class="post-subtitle"> 
                         {% if post.author.profile.profile_pic %}
@@ -19,23 +31,17 @@
                         {% else %}
                         <img src="{% static 'static-images/default_profile_image.png' %}" height=100 width=100 class="rounded-circle" alt="">
                         {% endif %}
-                        <a href="{% url 'profile_page_view' post.author.profile.id %}">{{ post.author }}</a>
-                        {{ post.created_on }}</p>
-                    {% if user.is_authenticated %}
-                        {% if user.id == post.author.id %}
-                        <div class="edit-delete-post">
-                            <a href="{% url 'update_post' post.slug %}">Edit post</a>
-                            <a href="{% url 'delete_post' post.slug %}">Delete post</a>
-                        </div>
-                            
-                        {% endif %}
-                    {% endif %}
+                        <a class="author-profile-link" href="{% url 'profile_page_view' post.author.profile.id %}">{{ post.author }}</a>
+                        <small class="muted"> - {{ post.created_on }}</small>
+                        
+                    </p>
+                    
                 
             </div>
             <div class="d-none d-md-block col-md-6 masthead-image">
 
                 {% if "placeholder" in post.featured_image.url %}
-                <img src="https://codeinstitute.s3.amazonaws.com/fullstack/blog/default.jpg" width="100%">
+                <img src="../static/static-images/placeholder_featured_image.png" alt="" class="card-img top">
                 {% else %}
                 <img src=" {{ post.featured_image.url }}" width="100%">
                 {% endif %}

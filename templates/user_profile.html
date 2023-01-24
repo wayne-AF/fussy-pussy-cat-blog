@@ -13,7 +13,7 @@
                 <div class="img1">
                     {% if profile_user.profile_pic %}
                     <img src="{{ profile_user.profile_pic.url }}" height=250 width=250 class="rounded-circle" alt="">
-                    <!-- <img src="{{ default_profile_image.png }}" height=100 width=100 class="rounded-circle" alt=""> -->
+                    
                     {% else %}
                     <img src="{% static 'static-images/default_profile_image.png' %}" height=300 width=300 class="rounded-circle" alt="">
                     
