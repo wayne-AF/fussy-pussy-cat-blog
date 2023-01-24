@@ -8,12 +8,14 @@
 
     {% if user.is_authenticated %}
         {% if user.id == post.author.id %}
-            <h3>Delete {{ post.title }}</h3>
+            
             <div class="form-group">
+                <h3>DELETE {{ post.title }} ?</h3>
+                <hr>
                 <form method="POST">
                     {% csrf_token %}
                     <strong>Are you sure?</strong>
-                    <button>Delete post!</button>
+                    <button class="btn">Delete post!</button>
                 </form>
             </div>
         {% else %}

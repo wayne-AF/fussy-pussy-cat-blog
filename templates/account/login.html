@@ -11,21 +11,28 @@
     <div class="row">
       <div class="col-md-8 mt-3 offset-md-2">
 
-        <h3>{% trans "Sign In" %}</h3>
-        <hr>
-        <p>{% blocktrans %}If you would like an account, then you can
-          <a href="{{ signup_url }}" class="link">register here</a>!{% endblocktrans %}</p>
-
+        <h3>{% trans "SIGN IN" %}</h3>
       </div>
     </div>
+    <hr>
     <div class="row">
       <div class="col-md-8 mt-3 offset-md-2">
-        <form class="login" method="POST" action="{% url 'account_login' %}">
+        <form class="login form-group" method="POST" action="{% url 'account_login' %}">
           {% csrf_token %}
-          {{ form.as_p }}
+          <div class="mb-3">
+            <label for="id_login" class="form-label">Email address</label>
+            <input name="login" type="email" class="form-control" required id="id_login" aria-describedby="emailHelp">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <input type="password" name="password" required id="id_password" class="form-control">
+          </div>
+          <!-- {{ form.as_p }} -->
           {% if redirect_field_value %}
           <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
           {% endif %}
+          <p>{% blocktrans %}If you would like an account, then you can
+            <a href="{{ signup_url }}" class="link">register here</a>!{% endblocktrans %}</p>
           <button class="primaryAction btn" type="submit">{% trans "Sign In" %}</button>
         </form>
 
