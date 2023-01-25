@@ -10,9 +10,6 @@ from django.urls import reverse
 from ckeditor.fields import RichTextField
 from autoslug import AutoSlugField
 
-# class SomeForm(forms.Form):
-#     foo = SummernoteTextFormField()
-
 
 # a tuple for status, 0 or 1 to indicate whether post is draft or published
 STATUS = ((0, 'Draft'), (1, 'Published'))
@@ -21,15 +18,9 @@ STATUS = ((0, 'Draft'), (1, 'Published'))
 class Post(models.Model):
     title = models.CharField(max_length=200, unique=True)
     slug = AutoSlugField(populate_from='title', editable=False)
-    # slug = models.SlugField(max_length=200, unique=True)
-    # one-to-many r'ship from the user
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='blog_post')
     updated_on = models.DateTimeField(auto_now=True)
     content = RichTextField(blank=True, null=True)
-    # content = models.TextField()
-    # featured_image = models.ImageField(null=True, blank=True, upload_to='images/')
-    # profile_pic = models.ImageField(default='default_100x100.png', upload_to='profile_images', blank=True)
-
     featured_image = CloudinaryField('image', default='placeholder_featured_image.png')
     excerpt = models.TextField(blank=True)
     created_on = models.DateTimeField(auto_now=True)
@@ -51,7 +42,6 @@ class Post(models.Model):
 
 
 class Comment(models.Model):
-    # one-to-many r'ship because one post can have many comments
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
     name = models.CharField(max_length=80)
     email = models.EmailField()
@@ -70,7 +60,7 @@ class Comment(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    profile_pic = CloudinaryField('image', default='default_profile_image.png')
+    profile_pic = CloudinaryField('image', default='placeholder_profile_image.png')
 
     # profile_pic = models.ImageField(default='default_100x100.png', upload_to='profile_images', blank=True)
     breed = models.CharField(max_length=50, blank=True)

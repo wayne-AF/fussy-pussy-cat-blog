@@ -24,21 +24,17 @@
                 
                 </div>
 
-
-                
-                    
                     <p class="post-subtitle"> 
-                        <!-- <img src="{% static 'images/default_profile_image.png' %}" height=100 width=100 class="rounded-circle" alt=""> -->
-
-                        <img src="{% static 'images/default_profile_image.png' %}" height=100 width=100 class="author-pic" alt="">    
-                            <!-- <img src="{{ post.author.profile.profile_pic.url }}" height=100 width=100 class="rounded-circle author-pic" alt=""> -->
+                        {% if "placeholder" in post.author.profile.profile_pic.url %}
+                        <img src="{% static 'images/placeholder_profile_image.png' %}" height=100 width=100 class="author-pic rounded-circle" alt="">
+                        {% else %}
+                        <img src=" {{ post.author.profile.profile_pic.url }}" height=100 width=100 class="author-pic rounded-circle" alt="">
+                        {% endif %}
                         
                         <a class="author-profile-link" href="{% url 'profile_page_view' post.author.profile.id %}">{{ post.author }}</a>
                         <small class="muted"> - {{ post.created_on }}</small>
-                        
                     </p>
                     
-                
             </div>
             <div class="d-none d-md-block col-md-6 masthead-image">
 
