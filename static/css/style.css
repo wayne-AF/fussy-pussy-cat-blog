@@ -87,8 +87,8 @@ body {
     /* background-color: #FEFBE9; */
     /* background-image: url("../images/background-image-50.png"); */
     /* background-image: url("../images/background-image-25.png"); */
-    background-image: url("../static-images/background-image-10.png");
-
+    /* background-image: url("../static-images/background-image-10.png"); */
+    background-image: url("https://res.cloudinary.com/ddaxhspml/image/upload/v1674583721/static/static-images/background-image-10.97c84f39d8e1.png");
     background-repeat: repeat;
 }
 
@@ -97,7 +97,6 @@ body {
 .edit-delete-post {
     padding-left: 1.5em;
 }
-
 
 .card {
     border: none;
@@ -142,11 +141,9 @@ body {
     color: #FEFBE9;
 }
 
-/* .profile-card {
-    border-radius: 25px;
-    background-color: 
-} */
-
+.user-profile-name {
+    margin-top: 1em;
+}
 
 /* --------------------------------------------------Forms */
 
@@ -230,7 +227,7 @@ footer {
 }
 
 .title-section {
-    margin-bottom: 10%;
+    margin-bottom: 5%;
     margin-left: 5%;
 }
 
@@ -251,8 +248,12 @@ footer {
 
 .post-subtitle {
     margin-left: 5%;
-    margin-bottom: 5%;
+    margin-bottom: 10%;
     color:  white;
+}
+
+.author-pic {
+    margin-right: 2%;
 }
 
 .author-profile-link {

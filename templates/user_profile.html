@@ -5,20 +5,56 @@
 
 {% block content %}
 
-<div class="container">
+<div class="mask d-flex align-items-center h-100">
+  <div class="container h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+        <div class="card" style="border-radius: 25px;">
+          <div class="card-body p-5">
+            <div class="d-flex justify-content-center">
+              <img src="{{ profile_user.profile_pic.url }}" height=250 width=250 class="rounded-circle" alt="">
+                        
+            </div>
+            <div class="user-profile-name justify-content-center">
+              <h3>{{ profile_user }}</h3>
+            </div>
+            <hr>
+              <div class="main-text justify-content-center">
+                  <small class="text-muted">favourite quote</small>
+                  <h5>"{{ profile_user.favourite_quote }}"</h5>
+                  <small class="text-muted">breed</small>
+                  <h5>{{ profile_user.breed }}</h5>
+                  <small class="text-muted">likes</small>
+                  <h5>{{ profile_user.likes }}</h5>
+                  <small class="text-muted">dislikes</small>
+                  <h5>{{ profile_user.dislikes }}</h5>
+                  <small class="text-muted">about</small>
+                  <h5>{{ profile_user.about }}</h5>
+              </div>
+                  
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="container">
     <div class="row">
         <div class="profile-card card">
             <div class="col-lg-4 col-md-4 my-auto justify-content-center">
         
-                <div class="img1">
-                    {% if profile_user.profile_pic %}
+                <div class="profile-photo">
+                    
+                    
                     <img src="{{ profile_user.profile_pic.url }}" height=250 width=250 class="rounded-circle" alt="">
                     
-                    {% else %}
-                    <img src="{% static 'static-images/default_profile_image.png' %}" height=300 width=300 class="rounded-circle" alt="">
                     
                     
-                    {% endif %}
+                    <img src="{% static 'images/default_profile_image.png' %}" height=250 width=250 class="rounded-circle" alt="">
+                    
+                    
+                    
                 </div>
                 <div class="profile-name text-align-center"><h3>{{ profile_user }}</h3></div>
                 <hr>
@@ -37,7 +73,7 @@
         </div>
       
     </div>
-  </div>
+  </div> -->
 
     
 {% endblock content %}

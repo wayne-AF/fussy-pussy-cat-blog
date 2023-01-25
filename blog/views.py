@@ -14,17 +14,10 @@ from .models import Post, Profile
 from .forms import CommentForm, EditProfileForm, CreatePostForm, UpdatePostForm, ChangePasswordForm, UpdateProfileForm
 
 
-# Updating user's profile
-class EditProfilePageView(UpdateView):
-    model = Profile
-    template_name = 'edit_profile.html'
-    form_class = UpdateProfileForm
-    # success_url = reverse_lazy('profile_page_view')
-    success_url = reverse_lazy('home')
-
-
-# Viewing another user's profile page
 class ProfilePageView(DetailView):
+    """
+    View for viewing a user's profile page
+    """
     model = Profile
     template_name = 'user_profile.html'
 
@@ -38,15 +31,24 @@ class ProfilePageView(DetailView):
 
 
 class PasswordsChangeView(PasswordChangeView):
+    """
+    View for changing the user's password
+    """
     form_class = ChangePasswordForm
     success_url = reverse_lazy('password_success')
     
 
 def password_success(request):
+    """
+    Renders a success message when the user changes their password
+    """
     return render(request, 'password_success.html', {})
 
 
 class PostList(generic.ListView):
+    """
+    Displays a list of 6 most recent posts
+    """
     model = Post
     queryset = Post.objects.order_by('-created_on')
     template_name = 'index.html'
@@ -54,6 +56,11 @@ class PostList(generic.ListView):
 
 
 class PostDetail(View):
+    """
+    View for seeing the content of a post, including 
+    its comments and likes, with a link to view the author's
+    profile
+    """
     def get(self, request, slug, *args, **kwargs):
         queryset = Post.objects.filter(status=1)
         post = get_object_or_404(queryset, slug=slug)
@@ -107,6 +114,9 @@ class PostDetail(View):
 
 
 class PostLike(View):
+    """
+    View for displaying the number of likes on a post
+    """
     def post(self, request, slug):
         post = get_object_or_404(Post, slug=slug)
         if post.likes.filter(id=request.user.id).exists():
@@ -117,10 +127,16 @@ class PostLike(View):
 
 
 def contact(request):
+    """
+    View for a contact form 
+    """
     return render(request, 'contact.html', {})
 
 
 class AddPostView(CreateView):
+    """
+    View for a user to write and upload a post
+    """
     model = Post
     form_class = CreatePostForm
     template_name = 'add_post.html'
@@ -131,23 +147,42 @@ class AddPostView(CreateView):
 
 
 class UpdatePostView(UpdateView):
+    """
+    View for user to update a post they have written
+    """
     model = Post
     form_class = UpdatePostForm
     template_name = 'update_post.html'
 
 
 class DeletePostView(DeleteView):
+    """
+    View for a user to delete a post they have written
+    """
     model = Post
     template_name = 'delete_post.html'
     success_url = reverse_lazy('home')
 
 
 class UserEditView(UpdateView):
+    """
+    View for a user to edit their username and email.
+    Also provides a link for user to update their password
+    """
     model = User
     form_class = EditProfileForm
     template_name = 'edit_account.html'
     success_url = reverse_lazy('home')
 
-    
     def get_object(self):
         return self.request.user
+
+
+class EditProfilePageView(UpdateView):
+    """
+    View for a user to edit their profile page
+    """
+    model = Profile
+    template_name = 'edit_profile.html'
+    form_class = UpdateProfileForm
+    success_url = reverse_lazy('home')
