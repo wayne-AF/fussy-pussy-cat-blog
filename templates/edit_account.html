@@ -2,23 +2,36 @@
 
 {% load static %}
 
-{% block title %}Edi Profile{% endblock title %}
+{% block title %}Edit Settings{% endblock title %}
 
 {% block content %}
 
 <div class="container">
 
-    <div class="form-group">
-        <h3>EDIT SETTINGS</h3>
-        <hr>
-        <form method="POST" >
-            {% csrf_token %}
-            
-            
-            {{ form.as_p }}
-            <button class="btn">Update</button>
-        </form>
-    </div>
+    {% if user.is_authenticated %}
+        {% if user.id == user.profile.id %}
+
+        <div class="form-group">
+            <h3>EDIT SETTINGS</h3>
+            <hr>
+            <form method="POST" >
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button class="btn">Update</button>
+            </form>
+        </div>
+
+        {% else %}
+
+            <h3>Bad kitty! This page isn't for you!</h3>
+
+        {% endif %}
+
+    {% else %}
+
+        <h3>Cats only in this blog, Fido!</h3>
+
+    {% endif %}
     
 </div>
 

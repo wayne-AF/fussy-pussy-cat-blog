@@ -13,11 +13,9 @@
                             <div class="card-body">
                                 <div class="image-container">
                                     {% if "placeholder" in post.featured_image.url %}
-                                    <img src="{% static 'images/placeholder_featured_image.png' %}" alt="" class="card-img top">
-                                    <!-- <img src="https://res.cloudinary.com/ddaxhspml/image/upload/v1674583725/static/static-images/placeholder_featured_image.b7a68af6ab82.png" alt="" class="card-img top"> -->
-                                    <!-- <img src="../static/static-images/placeholder_featured_image.png" alt="" class="card-img top"> -->
+                                        <img src="{% static 'images/placeholder_featured_image.png' %}" alt="" class="card-img top">
                                     {% else %}
-                                    <img src=" {{ post.featured_image.url }}" alt="" class="card-img-top">
+                                        <img src=" {{ post.featured_image.url }}" alt="" class="card-img-top">
                                     {% endif %}
                                     <div class="image-flash">
                                         <p class="author">{{ post.author }}</p>
@@ -28,7 +26,6 @@
                                     <p class="card-text">{{ post.excerpt }}</p>
                                 </a>
                                 <hr />
-                                
                                 <p class="card-text text-muted h6">Published: {{ post.created_on }}
                                 </p>
                                 <i class="fa-solid fa-paw"></i>{{ post.number_of_likes }}

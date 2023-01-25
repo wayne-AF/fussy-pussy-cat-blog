@@ -1,30 +1,25 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
 
 <div class="container ">
 
     {% if user.is_authenticated %}
 
-    <div class="form-group">
-        <h3>ADD POST</h3>
-        <hr>
-        <form method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ form.media }}
-            {{ form.as_p }}
-            <button type="submit" class="btn">Submit</button>
-        </form>
-    </div>
+        <div class="form-group">
+            <h3>ADD POST</h3>
+            <hr>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.media }}
+                {{ form.as_p }}
+                <button type="submit" class="btn">Submit</button>
+            </form>
+        </div>
 
-    <!-- <script>
-        var name = "{{ user.username }}";
-        document.getElementById("author-field").value = name;
-
-    </script> -->
     {% else %}
 
-    <h3>Cats only in this blog, Fido!</h3>
+        <h3>Cats only in this blog, Fido!</h3>
 
     {% endif %}
 

@@ -1,11 +1,9 @@
 from . import views
 from .views import AddPostView, UpdatePostView, DeletePostView, UserEditView, PasswordsChangeView, ProfilePageView, EditProfilePageView
 from django.urls import path
-# from django.contrib.auth import views as auth_views
 
 
 urlpatterns = [
-    # because using class-based views, must use as_view() after PostList so it will render the class as a view
     path('', views.PostList.as_view(), name='home'),
     path('<slug:slug>/', views.PostDetail.as_view(), name='post_detail'),
     path('like/<slug:slug>/', views.PostLike.as_view(), name='post_like'),

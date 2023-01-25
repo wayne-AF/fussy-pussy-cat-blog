@@ -4,8 +4,6 @@
 
 {% load crispy_forms_tags %}
 
-
-
 <div class="masthead">
     <div class="container">
         <div class="row g-0">
@@ -13,38 +11,28 @@
                 <div class="title-section">
                     <h1 class="post-title">{{ post.title }}</h1>
                         {% if user.is_authenticated %}
-                        {% if user.id == post.author.id %}
-                        <div>
-                            <a class="edit-link" href="{% url 'update_post' post.slug %}">Edit post</a>
-                            <a class="edit-link" href="{% url 'delete_post' post.slug %}">Delete post</a>
-                        </div>
-                            
+                            {% if user.id == post.author.id %}
+                                <div>
+                                    <a class="edit-link" href="{% url 'update_post' post.slug %}">Edit post</a>
+                                    <a class="edit-link" href="{% url 'delete_post' post.slug %}">Delete post</a>
+                                </div>
+                            {% endif %}
                         {% endif %}
-                        {% endif %}
-                
                 </div>
-
                     <p class="post-subtitle"> 
-                        {% if post.author.profile.profile_pic.url %}
-                        <img src=" {{ post.author.profile.profile_pic.url }}" height=100 width=100 class="author-pic rounded-circle" alt="">
                         
-                        {% else %}
-
-                        <img src="{% static 'images/placeholder_profile_image.png' %}" height=100 width=100 class="author-pic rounded-circle" alt="">
-
-                        {% endif %}
+                            <img src=" {{ post.author.profile.profile_pic.url }}" height=100 width=100 class="author-pic" alt="">
                         
                         <a class="author-profile-link" href="{% url 'profile_page_view' post.author.profile.id %}">{{ post.author }}</a>
                         <small class=""> - {{ post.created_on }}</small>
                     </p>
-                    
             </div>
             <div class="d-none d-md-block col-md-6 masthead-image">
 
                 {% if "placeholder" in post.featured_image.url %}
-                <img src="{% static 'images/placeholder_featured_image.png' %}" alt="" class="card-img top">
+                    <img src="{% static 'images/placeholder_featured_image.png' %}" alt="" class="card-img top">
                 {% else %}
-                <img src=" {{ post.featured_image.url }}" width="100%">
+                    <img src=" {{ post.featured_image.url }}" width="100%">
                 {% endif %}
             </div>
         </div>
@@ -145,16 +133,17 @@
                     Your comment is awaiting approval
                 </div>
                 {% else %}
-                {% if user.is_authenticated %}
 
-                <h3>Leave a comment:</h3>
-                <p>posting as: {{ user.username }}</p>
-                <form method="post" style="margin-top: 1.3em">
-                    {{ comment_form | crispy }}
-                    {% csrf_token %}
-                    <button type="submit" class="btn btn-signup btn-lg">Submit</button>
-                </form>
-                {% endif %}
+                    {% if user.is_authenticated %}
+
+                        <h3>Leave a comment:</h3>
+                        <p>posting as: {{ user.username }}</p>
+                        <form method="post" style="margin-top: 1.3em">
+                            {{ comment_form | crispy }}
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-signup btn-lg">Submit</button>
+                        </form>
+                    {% endif %}
                 {% endif %}
             </div>
         </div>

@@ -8,42 +8,37 @@
 
 <div class="container">
 
-{% if user.is_authenticated %}
+    {% if user.is_authenticated %}
+        {% if user.id == user.profile.id %}
 
-        
-        <div class="form-group">
-            <div class="row">
-                <h3>EDIT PROFILE</h3>
-                <hr>
-                <div class="col-md-8 mx-auto">
-                    {% if user.profile_pic %}
-                    <img src="{{ user.profile.profile_pic.url }}" height=200 width=200 class="rounded-circle" alt="">
-                    
-                    {% else %}
-                    <img src="{% static 'static-images/placeholder_profile_image.png' %}" height=200 width=200 class="rounded-circle" alt="">
-                    {% endif %}
+            <div class="form-group">
+                <div class="row">
+                    <h3>EDIT PROFILE</h3>
+                    <hr>
+
                 </div>
+                <div class="d-flex justify-content-center">
+                    <img src="{{ user.profile.profile_pic.url }}" height=200 width=200 class="rounded-circle" alt="">
+                </div>
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn center-align">Update profile</button>
+                </form>
             </div>
-            <form method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                {{ form.as_p }}
-                
-                <button type="submit" class="btn center-align">Update profile</button>
-            </form>
-        </div>
 
-    
+        {% else %}
 
-{% else %}
+            <h3>Bad kitty! This page isn't for you!</h3>
 
-<h3>Cats only in this blog, Fido!</h3>
+        {% endif %}
 
-{% endif %}
+    {% else %}
 
+        <h3>Cats only in this blog, Fido!</h3>
+
+    {% endif %}
 
 </div>
 
-
-
-    
 {% endblock content %}

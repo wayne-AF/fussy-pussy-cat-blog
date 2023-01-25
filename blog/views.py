@@ -11,10 +11,11 @@ from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from .models import Post, Profile
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import CommentForm, EditProfileForm, CreatePostForm, UpdatePostForm, ChangePasswordForm, UpdateProfileForm
 
 
-class ProfilePageView(DetailView):
+class ProfilePageView(LoginRequiredMixin, DetailView):
     """
     View for viewing a user's profile page
     """
@@ -30,7 +31,7 @@ class ProfilePageView(DetailView):
         return context
 
 
-class PasswordsChangeView(PasswordChangeView):
+class PasswordsChangeView(LoginRequiredMixin, PasswordChangeView):
     """
     View for changing the user's password
     """
@@ -38,6 +39,7 @@ class PasswordsChangeView(PasswordChangeView):
     success_url = reverse_lazy('password_success')
     
 
+@login_required
 def password_success(request):
     """
     Renders a success message when the user changes their password
@@ -113,7 +115,7 @@ class PostDetail(View):
         )
 
 
-class PostLike(View):
+class PostLike(LoginRequiredMixin, View):
     """
     View for displaying the number of likes on a post
     """
@@ -133,7 +135,7 @@ def contact(request):
     return render(request, 'contact.html', {})
 
 
-class AddPostView(CreateView):
+class AddPostView(LoginRequiredMixin, CreateView):
     """
     View for a user to write and upload a post
     """
@@ -146,7 +148,7 @@ class AddPostView(CreateView):
         return super().form_valid(form)
 
 
-class UpdatePostView(UpdateView):
+class UpdatePostView(LoginRequiredMixin, UpdateView):
     """
     View for user to update a post they have written
     """
@@ -155,7 +157,7 @@ class UpdatePostView(UpdateView):
     template_name = 'update_post.html'
 
 
-class DeletePostView(DeleteView):
+class DeletePostView(LoginRequiredMixin, DeleteView):
     """
     View for a user to delete a post they have written
     """
@@ -164,7 +166,7 @@ class DeletePostView(DeleteView):
     success_url = reverse_lazy('home')
 
 
-class UserEditView(UpdateView):
+class UserEditView(LoginRequiredMixin, UpdateView):
     """
     View for a user to edit their username and email.
     Also provides a link for user to update their password
@@ -178,7 +180,7 @@ class UserEditView(UpdateView):
         return self.request.user
 
 
-class EditProfilePageView(UpdateView):
+class EditProfilePageView(LoginRequiredMixin, UpdateView):
     """
     View for a user to edit their profile page
     """
