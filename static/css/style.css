@@ -157,6 +157,10 @@ body {
     width: 100%;
   }
 
+.confirm-delete {
+    text-align: center;
+}
+
 
 /* --------------------------------------------------Footer */
 

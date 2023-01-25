@@ -10,11 +10,13 @@
         {% if user.id == post.author.id %}
             
             <div class="form-group">
-                <h3>DELETE {{ post.title }} ?</h3>
+                <h3>DELETE</h3>
+                <h3>"{{ post.title }}"?</h3>
                 <hr>
-                <form method="POST">
+                <form class="confirm-delete" method="POST">
                     {% csrf_token %}
-                    <strong>Are you sure?</strong>
+                    <h4>Are you sure?</h4>
+                    <br>
                     <button class="btn">Delete post!</button>
                 </form>
             </div>
