@@ -1,7 +1,6 @@
 from .models import Comment, Profile, Post
 from django import forms
 from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm
-
 from django.contrib.auth.models import User
 
 
@@ -65,10 +64,6 @@ class CreatePostForm(forms.ModelForm):
 
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control'}),
-            # 'slug': forms.TextInput(attrs={'class': 'form-control'}),
-            # 'author': forms.TextInput(attrs={'class': 'form-control', 'value': '', 'id': 'author-field', }),
-
-            # 'author': forms.Select(attrs={'class': 'form-control'}),
             'content': forms.Textarea(attrs={'class': 'form-control'}),
             'featured_image': forms.FileInput(attrs={'class': 'form-control-file'})
         }
@@ -84,9 +79,6 @@ class UpdatePostForm(forms.ModelForm):
 
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control'}),
-            # 'slug': forms.TextInput(attrs={'class': 'form-control'}),
-            # 'author': forms.Select(attrs={'class': 'form-control'}),
             'content': forms.Textarea(attrs={'class': 'form-control'}),
             'featured_image': forms.FileInput(attrs={'class': 'form-control-file'}),
-
         }

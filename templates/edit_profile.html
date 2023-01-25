@@ -17,10 +17,10 @@
                 <hr>
                 <div class="col-md-8 mx-auto">
                     {% if user.profile_pic %}
-                    <img src="{{ user.profile_pic.url }}" height=200 width=200 class="rounded-circle" alt="">
+                    <img src="{{ user.profile.profile_pic.url }}" height=200 width=200 class="rounded-circle" alt="">
                     
                     {% else %}
-                    <img src="{% static 'static-images/default_profile_image.png' %}" height=200 width=200 class="rounded-circle" alt="">
+                    <img src="{% static 'static-images/placeholder_profile_image.png' %}" height=200 width=200 class="rounded-circle" alt="">
                     {% endif %}
                 </div>
             </div>

@@ -11,11 +11,13 @@ from ckeditor.fields import RichTextField
 from autoslug import AutoSlugField
 
 
-# a tuple for status, 0 or 1 to indicate whether post is draft or published
 STATUS = ((0, 'Draft'), (1, 'Published'))
 
 
 class Post(models.Model):
+    """
+    Model for a user-created post
+    """
     title = models.CharField(max_length=200, unique=True)
     slug = AutoSlugField(populate_from='title', editable=False)
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='blog_post')
@@ -27,7 +29,6 @@ class Post(models.Model):
     status = models.IntegerField(choices=STATUS, default=1)
     likes = models.ManyToManyField(User, related_name='blog_likes', blank=True)
 
-    # helpers
     class Meta:
         ordering = ['-created_on']
 
@@ -42,15 +43,16 @@ class Post(models.Model):
 
 
 class Comment(models.Model):
+    """
+    Model for a user-created comment
+    """
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
     name = models.CharField(max_length=80)
     email = models.EmailField()
     body = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
     approved = models.BooleanField(default=False)
-    # add this to be able to reference the author of the comment?
-    # author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comments')
-
+    
     class Meta:
         ordering = ['created_on']
 
@@ -59,10 +61,12 @@ class Comment(models.Model):
 
 
 class Profile(models.Model):
+    """
+    Model for user profile which is created automatically when user registers.
+    Profile can be updated by user at any time
+    """
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     profile_pic = CloudinaryField('image', default='placeholder_profile_image.png')
-
-    # profile_pic = models.ImageField(default='default_100x100.png', upload_to='profile_images', blank=True)
     breed = models.CharField(max_length=50, blank=True)
     favourite_quote = models.CharField(max_length=200, blank=True)
     likes = models.CharField(max_length=150)
