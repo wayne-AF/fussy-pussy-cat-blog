@@ -21,7 +21,7 @@
                 </div>
                     <p class="post-subtitle"> 
                         
-                            <img src=" {{ post.author.profile.profile_pic.url }}" height=100 width=100 class="author-pic" alt="">
+                            <img src=" {{ post.author.profile.profile_pic.url }}" height=100 width=100 class="author-pic rounded-circle" alt="">
                         
                         <a class="author-profile-link" href="{% url 'profile_page_view' post.author.profile.id %}">{{ post.author }}</a>
                         <small class=""> - {{ post.created_on }}</small>

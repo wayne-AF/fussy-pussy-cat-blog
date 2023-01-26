@@ -9,7 +9,9 @@ admin.site.register(Profile)
 # this decorator tells where in admin we want to use summernote
 @admin.register(Post)
 class PostAdmin(SummernoteModelAdmin):
-
+    """
+    Allows for use of sumernote text editor in the admin panel
+    """
     # configurations to add functionality to admin panel
     # list_display = ('title', 'slug', 'status', 'created_on')
     list_display = ('title', 'slug', 'created_on')
@@ -24,7 +26,9 @@ class PostAdmin(SummernoteModelAdmin):
 
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
-
+    """
+    Allows for approval of comments in the admin panel
+    """
     list_display = ('name', 'body', 'post', 'created_on', 'approved')
     list_filter = ('approved', 'created_on')
     search_fields = ('name', 'email', 'body')

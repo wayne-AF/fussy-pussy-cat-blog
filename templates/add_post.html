@@ -4,24 +4,20 @@
 
 <div class="container ">
 
-    {% if user.is_authenticated %}
 
-        <div class="form-group">
-            <h3>ADD POST</h3>
-            <hr>
-            <form method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                {{ form.media }}
-                {{ form.as_p }}
-                <button type="submit" class="btn">Submit</button>
-            </form>
-        </div>
 
-    {% else %}
+    <div class="form-group">
+        <h3>ADD POST</h3>
+        <hr>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.media }}
+            {{ form.as_p }}
+            <button type="submit" class="btn">Submit</button>
+        </form>
+    </div>
 
-        <h3>Cats only in this blog, Fido!</h3>
 
-    {% endif %}
 
 </div>
 

@@ -7,13 +7,15 @@
 
     {% if user.is_authenticated %}
         {% if user.id == post.author.id %}
-            <h3>UPDATE POST</h3>
+            
             <div class="form-group">
+                <h3>UPDATE POST</h3>
+                <hr>
                 <form method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{ form.media }}
                     {{ form.as_p }}
-                    <button>Update</button>
+                    <button class="btn">Update</button>
                 </form>
             </div>
 
