@@ -9,7 +9,7 @@
 <div class="container">
 
     {% if user.is_authenticated %}
-        {% if user.id == user.profile.id %}
+        
 
         <div class="form-group">
             <h3>EDIT SETTINGS</h3>
@@ -21,11 +21,7 @@
             </form>
         </div>
 
-        {% else %}
-
-            <h3>Bad kitty! This page isn't for you!</h3>
-
-        {% endif %}
+        
 
     {% else %}
 

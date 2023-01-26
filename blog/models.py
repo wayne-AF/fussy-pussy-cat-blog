@@ -8,6 +8,7 @@ from django.dispatch import receiver
 from django.db.models.signals import post_save
 from django.urls import reverse
 from ckeditor.fields import RichTextField
+from django_summernote.fields import SummernoteTextField
 from autoslug import AutoSlugField
 
 
@@ -22,7 +23,7 @@ class Post(models.Model):
     slug = AutoSlugField(populate_from='title', editable=False)
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='blog_post')
     updated_on = models.DateTimeField(auto_now=True)
-    content = RichTextField(blank=True, null=True)
+    content = SummernoteTextField(blank=True, null=True)
     featured_image = CloudinaryField('image', default='placeholder_featured_image.png')
     excerpt = models.TextField(blank=True)
     created_on = models.DateTimeField(auto_now=True)

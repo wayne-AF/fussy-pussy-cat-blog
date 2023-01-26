@@ -39,7 +39,6 @@ hr {
 
 .navbar {
     background-color: transparent;
-    /* background-color: #e1eedd; */
     padding-left: 1em;
     padding-right: 1em;
     --bs-navbar-nav-link-padding-x: 1rem;
@@ -84,10 +83,6 @@ hr {
 /* --------------------------------------------------Body */
 
 body {
-    /* background-color: #FEFBE9; */
-    /* background-image: url("../images/background-image-50.png"); */
-    /* background-image: url("../images/background-image-25.png"); */
-    /* background-image: url("../static-images/background-image-10.png"); */
     background-image: url("https://res.cloudinary.com/ddaxhspml/image/upload/v1674583721/static/static-images/background-image-10.97c84f39d8e1.png");
     background-repeat: repeat;
 }
@@ -123,10 +118,6 @@ body {
     margin: 0.5em; 
     text-transform: uppercase;
 }
-
-/* .paw-btn, .fa-comments {
-    font-size: 1.5rem;
-} */
 
 .paw-btn {
     border: none;
@@ -171,7 +162,7 @@ footer {
     text-align: center;
 }
 
-/* social icons */
+
 .social {
     margin: 20px 10px;
     color: #183a1d;
@@ -182,7 +173,6 @@ footer {
 
 .social:hover {
     color: #f0a04b;
-    /* background-color: #183a1d; */
 }
 
 
@@ -272,18 +262,6 @@ footer {
     border-radius: 10px;
 }
 
-
-/* .btn-signup {
-    background-color: #23BBBB;
-    color: #fff;
-}
-
-.btn-signup:hover,
-.btn-signup:active {
-    background-color: #fff;
-    color: #23BBBB;
-} */
-
 .link {
     color: #23BBBB;
     text-decoration: none;
@@ -305,7 +283,6 @@ footer {
 /* --------------------------------------------------Profile */
 
 .profile-view {
-    /* width: max-content;     */
     margin-top: 1em;    
     padding: 1.5em;
     background-color: #e1eedd;
@@ -313,5 +290,4 @@ footer {
     font-size: 1.5rem;
     border-radius: 25px;
     font-family: 'Open Sans', sans-serif;
-    /* font-weight: 300; */
 }
