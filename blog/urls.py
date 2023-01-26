@@ -1,4 +1,5 @@
 from . import views
+from fussypussy.views import handler403, handler404, handler405, handler500
 from .views import AddPostView, UpdatePostView, DeletePostView, UserEditView, PasswordsChangeView, ProfilePageView, EditProfilePageView
 from django.urls import path
 

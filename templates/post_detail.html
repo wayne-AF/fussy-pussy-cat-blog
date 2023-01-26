@@ -32,7 +32,7 @@
                 {% if "placeholder" in post.featured_image.url %}
                     <img src="{% static 'images/placeholder_featured_image.png' %}" alt="" class="card-img top">
                 {% else %}
-                    <img src=" {{ post.featured_image.url }}" width="100%">
+                    <img src=" {{ post.featured_image.url }}" width="100%" alt="">
                 {% endif %}
             </div>
         </div>
@@ -149,4 +149,5 @@
         </div>
     </div>
 
+</div>
     {% endblock content %}

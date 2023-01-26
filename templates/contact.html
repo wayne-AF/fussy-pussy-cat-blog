@@ -14,7 +14,7 @@
                 <h3 class="mb-4 text-center">CONTACT FUSSY</h3>
                 <hr>
                 <div id="message" class="success"></div>
-                <form onsubmit="return sendMail(this);" class="text-center p-5 contact-form" action="#" method="">
+                <form onsubmit="return sendMail(this);" class="text-center p-5 contact-form" action="#" method="#">
                     {% csrf_token %}
                     <div class="row mb-4">
                         <div class="col">
@@ -31,6 +31,7 @@
             
             </div>
         
+        </div>
     </div>
 </div>
 

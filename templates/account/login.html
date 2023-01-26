@@ -28,7 +28,7 @@
             <input type="password" name="password" required id="id_password" class="form-control">
           </div>
           {% if redirect_field_value %}
-          <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+          <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}">
           {% endif %}
           <p>{% blocktrans %}If you would like an account, then you can
             <a href="{{ signup_url }}" class="link">register here</a>!{% endblocktrans %}</p>
