@@ -1,6 +1,7 @@
 # Fussy Pussy Cat Blog
 ![FussyPussy responsiveness screenshot](https://github.com/wayne-AF/fussy-pussy-cat-blog/blob/main/documentation/screenshots/responsive%20screenshot.png?raw=true)
-The live project can be viewed ![here](https://fussy-pussy-cat-blog.herokuapp.com/)
+
+The live project can be viewed [here](https://fussy-pussy-cat-blog.herokuapp.com/)
 ## Table of Contents
 1. [User Experience](https://github.com/wayne-AF/fussy-pussy-cat-blog/edit/main/README.md#user-experience)
 	- [Project Goals](https://github.com/wayne-AF/fussy-pussy-cat-blog/edit/main/README.md#project-goals)
